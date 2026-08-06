@@ -5,8 +5,10 @@ type Stile = NonNullable<Exclude<MapOptions['style'], string>>
 
 export const URL_MAPPA = '/tiles/venezia.pmtiles'
 
-const URL_FONT = `${import.meta.env.BASE_URL}mappa/font/{fontstack}/{range}.pbf`
-const URL_SPRITE = `${import.meta.env.BASE_URL}mappa/sprite/light`
+const BASE_ASSOLUTA = new URL(import.meta.env.BASE_URL, window.location.href).href
+
+const URL_FONT = `${BASE_ASSOLUTA}mappa/font/{fontstack}/{range}.pbf`
+const URL_SPRITE = `${BASE_ASSOLUTA}mappa/sprite/light`
 
 export const VENEZIA = {
   centro: [12.3358, 45.4372] as [number, number],
