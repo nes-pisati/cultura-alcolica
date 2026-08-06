@@ -1,0 +1,996 @@
+.mappa {
+  position: relative;
+  height: 100%;
+}
+
+.mappa-tela {
+  width: 100%;
+  height: 100%;
+}
+
+.mappa-errore {
+  position: absolute;
+  inset: auto 12px 12px;
+  margin: 0;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--raggio-card);
+  background: rgba(123, 31, 43, 0.92);
+  color: var(--carta);
+  font: 400 13px/1.4 var(--font-testo);
+}
+
+.schermata-mappa {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.schermata__testata--nuda {
+  border-bottom: none;
+  padding-bottom: var(--spazio-3);
+}
+
+.schermata__testata-centro {
+  margin: 0 auto;
+}
+
+.schermata__testata-coda {
+  margin-left: auto;
+}
+
+.schermata__testata-spazio {
+  width: 44px;
+}
+
+.benvenuto {
+  padding-top: 28px;
+}
+
+.benvenuto__marchio {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 26px;
+  border-radius: var(--raggio-card);
+  background: var(--vino);
+}
+
+.benvenuto__indice {
+  border-top: 1px solid var(--bordo);
+}
+
+.installa__azioni {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spazio-3);
+  margin-top: var(--spazio-3);
+}
+
+.download__elenco {
+  border-top: 1px solid var(--bordo);
+}
+
+.download__pausa {
+  margin-top: var(--spazio-3);
+}
+
+.conto__corpo {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 var(--spazio-4);
+}
+
+.ancora-player--riga {
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-3);
+}
+
+.ancora-player__play--grande {
+  width: 60px;
+  height: 60px;
+}
+
+.ancora-player__etichetta {
+  display: block;
+  margin-bottom: 6px;
+  font: 600 15px/1.2 var(--font-testo);
+}
+
+.ancora-player__durata {
+  font: 500 15px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+  color: var(--inchiostro-tenue);
+}
+
+.ancora-player__apri {
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  color: inherit;
+}
+
+.schermata-mappa__tela {
+  position: absolute;
+  inset: 0;
+}
+
+.schermata-mappa__alto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding-top: env(safe-area-inset-top);
+}
+
+.barra-tappa {
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-3);
+  width: calc(100% - 24px);
+  text-align: left;
+  color: inherit;
+  margin: var(--spazio-2) 12px 0;
+  padding: 11px 14px;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-card);
+  background: var(--carta);
+  box-shadow: 0 2px 0 rgba(35, 32, 29, 0.1);
+}
+
+.barra-tappa__numero {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--raggio-pillola);
+  background: var(--vino);
+  color: var(--carta);
+  font: 600 16px/1 var(--font-testo);
+}
+
+.barra-tappa__corpo {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+
+.barra-tappa__corpo .sovratitolo {
+  display: block;
+}
+
+.barra-tappa__titolo {
+  display: block;
+  margin-top: 2px;
+  overflow: hidden;
+  font: 600 17px/1.25 var(--font-titolo);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.barra-tappa__distanza {
+  display: block;
+  flex: none;
+  text-align: right;
+}
+
+.barra-tappa__valore,
+.barra-tappa__unita {
+  display: block;
+}
+
+.barra-tappa__valore {
+  font: 600 20px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+}
+
+.barra-tappa__unita {
+  font: 500 12px/1.2 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}
+
+.schermata-mappa__comandi {
+  position: absolute;
+  right: 12px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spazio-3);
+  transition: bottom 0.2s ease;
+}
+
+.schermata-mappa__avviso {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  z-index: 3;
+}
+
+.schermata-mappa__velo {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: var(--velo);
+}
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spazio-2) var(--spazio-4) calc(var(--spazio-8) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--bordo);
+  border-radius: var(--raggio-sheet) var(--raggio-sheet) 0 0;
+  background: var(--carta);
+  box-shadow: var(--ombra-sheet);
+}
+
+.sheet--media {
+  height: 414px;
+}
+
+.sheet--arrivo {
+  padding-top: 20px;
+  border-top: 2px solid var(--inchiostro);
+  box-shadow: var(--ombra-sheet-arrivo);
+}
+
+.sheet__presa {
+  flex: none;
+  width: 44px;
+  height: 5px;
+  margin: 0 auto 14px;
+  padding: 0;
+  border: none;
+  border-radius: var(--raggio-pillola);
+  background: var(--bordo-forte);
+}
+
+.sheet__intestazione {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--spazio-2);
+  margin-bottom: 2px;
+}
+
+.sheet__titolo {
+  margin: 0 0 var(--spazio-3);
+  text-align: left;
+}
+
+.sheet__anteprima {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0 0 auto;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font: 400 17px/1.5 var(--font-titolo);
+}
+
+.sheet__azioni {
+  display: flex;
+  gap: var(--spazio-3);
+  flex: none;
+  margin-top: var(--spazio-3);
+}
+
+.sheet__azioni .pulsante-grande {
+  flex: 1;
+}
+
+.sheet__azioni .pulsante-pillola {
+  flex: none;
+  width: 132px;
+  height: var(--tocco-primario);
+}
+
+.sheet__azioni--colonna {
+  flex-direction: column;
+}
+
+.arrivo__testata {
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-3);
+  margin-bottom: 14px;
+}
+
+.arrivo__numero {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border: 2.5px solid var(--inchiostro);
+  border-radius: var(--raggio-pillola);
+  background: var(--ottone-vivo);
+  font: 600 21px/1 var(--font-testo);
+}
+
+.arrivo__titolo {
+  margin: 3px 0 0;
+  font: 600 26px/1.1 var(--font-titolo);
+}
+
+.arrivo__testo {
+  margin: 0 0 var(--spazio-4);
+  font: 400 17px/1.5 var(--font-titolo);
+}
+
+.riga-wakelock {
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-2);
+  margin-bottom: var(--spazio-3);
+  font: 500 15px/1.3 var(--font-testo);
+}
+
+.riga-wakelock__spia {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--inchiostro);
+  border-radius: var(--raggio-pillola);
+  background: var(--ottone-vivo);
+}
+
+.riga-wakelock__spia::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--raggio-pillola);
+  background: var(--inchiostro);
+}
+
+.riga-wakelock__stato {
+  margin-left: auto;
+  font: 600 10px/1 var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ottone);
+}
+
+.dettaglio__contenuto {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--spazio-4) var(--spazio-4) 0;
+}
+
+.dettaglio__titolo {
+  margin: 0 0 var(--spazio-3);
+  font: 600 30px/1.08 var(--font-titolo);
+  letter-spacing: -0.01em;
+}
+
+.dettaglio__sommario {
+  margin: -8px 0 18px;
+  font: 500 14px/1.3 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}
+
+.dettaglio__immagine {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 150px;
+  margin-bottom: var(--spazio-4);
+  overflow: hidden;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-card);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--carta-scura) 0 6px,
+    var(--carta-riga) 6px 10px
+  );
+}
+
+.dettaglio__immagine--quadrata {
+  aspect-ratio: 1;
+  height: auto;
+  max-height: 250px;
+  margin: 0 auto var(--spazio-6);
+  width: 100%;
+}
+
+.dettaglio__segnaposto {
+  padding: 6px 10px;
+  border: 1px solid rgba(35, 32, 29, 0.2);
+  border-radius: 4px;
+  background: var(--carta);
+  font: 500 12px/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  color: var(--inchiostro-tenue);
+}
+
+.dettaglio__capolettera::first-letter {
+  float: left;
+  margin: 2px 8px 0 0;
+  font: 600 52px/0.86 var(--font-titolo);
+  color: var(--vino);
+}
+
+.dettaglio__prossima {
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-2);
+  padding: 14px 0 var(--spazio-4);
+  border-top: 1px solid var(--bordo);
+}
+
+.dettaglio__prossima-etichetta {
+  font: 500 15px/1.3 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}
+
+.dettaglio__prossima-nome {
+  font: 600 17px/1.3 var(--font-titolo);
+}
+
+.ordini {
+  margin-bottom: var(--spazio-4);
+  padding: 14px;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-card);
+  background: var(--carta-scura);
+}
+
+.ordini__riga {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spazio-2);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--bordo);
+}
+
+.ordini__riga:last-child {
+  border-bottom: none;
+}
+
+.ordini__nome {
+  font: 400 17px/1.3 var(--font-titolo);
+}
+
+.ordini__prezzo {
+  font: 600 16px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+}
+
+.ancora-player {
+  flex: none;
+  padding: var(--spazio-3) var(--spazio-4) calc(var(--spazio-8) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--bordo);
+  background: var(--carta);
+  box-shadow: var(--ombra-player);
+}
+
+.ancora-player__riga {
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-3);
+  margin-bottom: var(--spazio-3);
+}
+
+.ancora-player__play {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--tocco-minimo);
+  height: var(--tocco-minimo);
+  padding: 0;
+  border: none;
+  border-radius: var(--raggio-pillola);
+  background: var(--vino);
+}
+
+.ancora-player__corpo {
+  flex: 1;
+  min-width: 0;
+}
+
+.ancora-player__tempi {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  font: 500 13px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+  color: var(--inchiostro-tenue);
+}
+
+.ancora-player__salto {
+  flex: none;
+  width: var(--tocco-minimo);
+  height: var(--tocco-minimo);
+  padding: 0;
+  border: 1px solid var(--bordo-forte);
+  border-radius: var(--raggio-pillola);
+  background: var(--carta);
+  font: 600 13px/1 var(--font-testo);
+}
+
+.player-esteso__centro {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--spazio-6);
+}
+
+.player-esteso__titolo {
+  margin: 0;
+  font: 600 28px/1.1 var(--font-titolo);
+  letter-spacing: -0.01em;
+}
+
+.player-esteso__comandi {
+  flex: none;
+  padding: 0 var(--spazio-6) calc(var(--spazio-8) + env(safe-area-inset-bottom));
+}
+
+.player-esteso__barra {
+  position: relative;
+  height: 14px;
+  margin-bottom: var(--spazio-3);
+  border-radius: var(--raggio-pillola);
+  background: rgba(35, 32, 29, 0.16);
+}
+
+.player-esteso__riempimento {
+  height: 100%;
+  border-radius: var(--raggio-pillola);
+  background: var(--ottone);
+}
+
+.player-esteso__maniglia {
+  position: absolute;
+  top: -5px;
+  width: 24px;
+  height: 24px;
+  border: 2.5px solid var(--ottone);
+  border-radius: var(--raggio-pillola);
+  background: var(--carta);
+  transform: translateX(-12px);
+}
+
+.player-esteso__tempi {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spazio-6);
+  font: 500 16px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+}
+
+.player-esteso__tempo-residuo {
+  color: var(--inchiostro-tenue);
+}
+
+.player-esteso__tasti {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.player-esteso__salto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 76px;
+  height: 76px;
+  padding: 0;
+  border: 1.5px solid var(--bordo-forte);
+  border-radius: var(--raggio-pillola);
+  background: var(--carta);
+  font: 600 13px/1 var(--font-testo);
+}
+
+.player-esteso__play {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  padding: 0;
+  border: none;
+  border-radius: var(--raggio-pillola);
+  background: var(--vino);
+  box-shadow: var(--ombra-pulsante);
+}
+
+.player-esteso__play:active {
+  background: var(--vino-premuto);
+  box-shadow: none;
+}
+
+.conto__riepilogo {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spazio-6);
+  margin-bottom: 18px;
+  padding: 18px 0 20px;
+  border-top: 2px solid var(--inchiostro);
+  border-bottom: 1px solid var(--bordo);
+}
+
+.conto__etichetta {
+  margin-bottom: var(--spazio-3);
+  font: 500 15px/1.3 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}
+
+.conto__registro-riga {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spazio-3);
+  padding: 13px 0;
+  border-bottom: 1px solid var(--bordo);
+}
+
+.conto__ora {
+  width: 52px;
+  font: 600 16px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+}
+
+.conto__tappa {
+  flex: 1;
+  font: 400 17px/1.3 var(--font-titolo);
+}
+
+.conto__vuoto {
+  padding: var(--spazio-6) 0;
+  font: 400 17px/1.5 var(--font-titolo);
+  color: var(--inchiostro-tenue);
+}
+
+.conto__comandi {
+  display: flex;
+  gap: var(--spazio-3);
+  flex: none;
+  padding: var(--spazio-3) var(--spazio-4) calc(var(--spazio-8) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--bordo);
+}
+
+.conto__aggiungi {
+  flex: 1;
+  height: 76px;
+  min-height: 76px;
+  font-size: 20px;
+}
+
+.conto__correggi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  flex: none;
+  width: 76px;
+  height: 76px;
+  padding: 0;
+  border: 1.5px solid var(--bordo-forte);
+  border-radius: var(--raggio-pillola);
+  background: transparent;
+  color: var(--inchiostro);
+  font: 600 26px/1 var(--font-testo);
+}
+
+.conto__correggi:disabled {
+  border-color: var(--bordo);
+  color: var(--inchiostro-tenue);
+}
+
+.conto__correggi-nota {
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--inchiostro-tenue);
+}
+
+.elenco__testata-corpo {
+  display: flex;
+  flex-direction: column;
+}
+
+.elenco__titolo {
+  font: 600 20px/1.1 var(--font-titolo);
+}
+
+.elenco__sottotitolo {
+  font: 500 13px/1.3 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}
+
+.elenco__lista {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 var(--spazio-4);
+}
+
+.elenco__piede {
+  flex: none;
+  padding: var(--spazio-3) var(--spazio-4) calc(var(--spazio-8) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--bordo);
+}
+
+.installa__scelta {
+  display: flex;
+  gap: 6px;
+  margin-bottom: var(--spazio-4);
+}
+
+.installa__sistema {
+  flex: 1;
+  height: 44px;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-card);
+  background: var(--carta-scura);
+  color: var(--inchiostro);
+  font: 600 15px/1 var(--font-testo);
+}
+
+.installa__sistema--attivo {
+  border-color: var(--inchiostro);
+  background: var(--inchiostro);
+  color: var(--carta);
+}
+
+.installa__passi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spazio-3);
+}
+
+.installa__passo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 14px;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-card);
+  background: var(--carta-scura);
+}
+
+.installa__numero {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--raggio-pillola);
+  background: var(--vino);
+  color: var(--carta);
+  font: 600 15px/1 var(--font-testo);
+}
+
+.installa__testo {
+  flex: 1;
+  font: 400 16px/1.4 var(--font-testo);
+}
+
+.installa__icona {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(35, 32, 29, 0.2);
+  border-radius: var(--raggio-card);
+  background: var(--carta);
+}
+
+.installa__icona--piena {
+  border-color: var(--vino);
+  background: var(--vino);
+}
+
+.download__voce {
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-3);
+  padding: 15px 0;
+  border-bottom: 1px solid var(--bordo);
+}
+
+.download__icona {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(35, 32, 29, 0.2);
+  border-radius: var(--raggio-card);
+  background: var(--carta-scura);
+}
+
+.download__nome {
+  flex: 1;
+  font: 500 17px/1.3 var(--font-testo);
+}
+
+.download__peso {
+  font: 500 16px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+  color: var(--inchiostro-tenue);
+}
+
+.download__totale {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spazio-2);
+  padding: var(--spazio-4) 0;
+}
+
+.download__totale-etichetta {
+  font: 600 17px/1 var(--font-testo);
+}
+
+.download__totale-valore {
+  font: 600 24px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+}
+
+.download__percentuale {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spazio-3);
+  margin-bottom: 22px;
+}
+
+.download__percentuale-numero {
+  font: 600 44px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+}
+
+.download__percentuale-simbolo {
+  font-size: 26px;
+}
+
+.download__percentuale-peso {
+  font: 500 16px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+  color: var(--inchiostro-tenue);
+}
+
+.download__barra-totale {
+  height: 12px;
+  overflow: hidden;
+  margin-bottom: 26px;
+  border-radius: var(--raggio-pillola);
+  background: rgba(35, 32, 29, 0.16);
+}
+
+.download__barra-totale-riempimento {
+  height: 100%;
+  background: var(--vino);
+}
+
+.download__voci-avanzamento {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.download__promemoria {
+  margin-bottom: var(--spazio-3);
+  padding: 11px 13px;
+  border: 1px solid var(--bordo-forte);
+  border-radius: var(--raggio-card);
+  background: var(--carta-scura);
+  font: 400 15px/1.4 var(--font-testo);
+}
+
+.inizia {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spazio-6);
+  text-align: center;
+}
+
+.inizia__sovratitolo {
+  margin-bottom: var(--spazio-4);
+  color: var(--ottone-chiaro);
+}
+
+.inizia__titolo {
+  margin: 0 0 14px;
+  font: 600 40px/1.05 var(--font-titolo);
+  letter-spacing: -0.015em;
+  color: var(--carta);
+}
+
+.inizia__testo {
+  max-width: 26ch;
+  margin: 0 0 var(--spazio-10);
+  font: 400 18px/1.5 var(--font-titolo);
+  color: var(--carta-tenue);
+}
+
+.inizia__pulsante {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spazio-3);
+  width: 216px;
+  height: 216px;
+  padding: 0;
+  border: none;
+  border-radius: var(--raggio-pillola);
+  background: var(--carta);
+  color: var(--vino);
+  font: 600 21px/1 var(--font-testo);
+  box-shadow: var(--ombra-pulsante-grande);
+}
+
+.inizia__pulsante:active {
+  background: var(--carta-scura);
+  box-shadow: none;
+}
+
+.inizia__piede {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spazio-2);
+  margin: 0 var(--spazio-6);
+  padding: var(--spazio-4) 0 calc(var(--spazio-8) + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(245, 239, 230, 0.28);
+  font: 400 15px/1.4 var(--font-testo);
+  color: var(--carta-tenue);
+}
+
+.fine__riepilogo {
+  border-top: 2px solid var(--inchiostro);
+}
+
+.fine__riga {
+  padding: var(--spazio-4) 0;
+}
+
+.fine__riga .riga-indice__voce {
+  font-size: 18px;
+}
+
+.fine__riga .riga-indice__valore {
+  font-size: 30px;
+}
+
+.fine__ombre {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spazio-3);
+}
+
+.fine__nota {
+  margin: 26px 0 0;
+  font: 400 18px/1.55 var(--font-titolo);
+  text-wrap: pretty;
+}
+
+.fine__azioni {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spazio-3);
+}

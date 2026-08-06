@@ -1,0 +1,566 @@
+.pulsante-grande {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spazio-2);
+  width: 100%;
+  min-height: var(--tocco-primario);
+  padding: var(--spazio-3) var(--spazio-6);
+  border: none;
+  border-radius: var(--raggio-pillola);
+  background: var(--vino);
+  color: var(--carta);
+  font: 600 19px/1.2 var(--font-testo);
+  text-wrap: balance;
+}
+
+.pulsante-grande:active {
+  background: var(--vino-premuto);
+}
+
+.pulsante-grande:disabled {
+  border: 1.5px solid var(--bordo-forte);
+  background: var(--carta-scura);
+  color: var(--inchiostro-tenue);
+}
+
+.pulsante-grande--chiaro {
+  background: var(--carta);
+  color: var(--inchiostro);
+}
+
+.pulsante-grande--chiaro:active {
+  background: var(--carta-scura);
+}
+
+.pulsante-pillola {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spazio-2);
+  min-height: var(--tocco-minimo);
+  padding: 0 22px;
+  border: 1.5px solid var(--vino);
+  border-radius: var(--raggio-pillola);
+  background: var(--carta);
+  color: var(--vino);
+  font: 600 17px/1.15 var(--font-testo);
+  max-width: 100%;
+}
+
+.pulsante-pillola:active {
+  border-color: var(--vino-premuto);
+  background: var(--vino-tenue);
+  color: var(--vino-premuto);
+}
+
+.pulsante-pillola:disabled {
+  border-color: var(--bordo-forte);
+  background: transparent;
+  color: var(--inchiostro-tenue);
+}
+
+.pulsante-pillola--neutro {
+  border-color: var(--bordo-forte);
+  background: transparent;
+  color: var(--inchiostro);
+}
+
+.pulsante-pillola--largo {
+  width: 100%;
+}
+
+.pulsante-pillola--su-scuro {
+  border-color: rgba(245, 239, 230, 0.5);
+  background: transparent;
+  color: var(--carta);
+}
+
+.pulsante-tondo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(35, 32, 29, 0.2);
+  border-radius: var(--raggio-pillola);
+  background: var(--carta);
+}
+
+.pulsante-tondo:active {
+  background: var(--carta-scura);
+}
+
+.pulsante-flottante {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--tocco-minimo);
+  height: var(--tocco-minimo);
+  padding: 0;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-pillola);
+  background: var(--carta);
+  box-shadow: var(--ombra-flottante);
+}
+
+.pulsante-flottante:active {
+  background: var(--carta-scura);
+  box-shadow: none;
+}
+
+.pulsante-flottante__conto {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 5px;
+  border: 2px solid var(--carta);
+  border-radius: var(--raggio-pillola);
+  background: var(--ottone-vivo);
+  color: var(--inchiostro);
+  font: 600 13px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--bordo-forte);
+  border-radius: var(--raggio-pillola);
+  background: var(--carta-scura);
+  color: var(--inchiostro);
+  font: 600 11px/1 var(--font-testo);
+}
+
+.badge--attiva {
+  border-color: var(--inchiostro);
+  background: var(--ottone-vivo);
+}
+
+.badge--fatta {
+  border-color: var(--vino);
+  background: var(--vino);
+  color: var(--carta);
+}
+
+.avviso {
+  display: flex;
+  gap: var(--spazio-2);
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--bordo-forte);
+  border-radius: var(--raggio-card);
+  background: var(--carta-scura);
+  color: var(--inchiostro);
+}
+
+.avviso--attenzione {
+  border-color: var(--inchiostro);
+  background: var(--avviso);
+}
+
+.avviso--bloccante {
+  flex-direction: column;
+  gap: var(--spazio-3);
+  border: none;
+  background: var(--inchiostro);
+  color: var(--carta);
+}
+
+.avviso__icona {
+  flex: none;
+  margin-top: 2px;
+}
+
+.avviso__testo {
+  flex: 1;
+}
+
+.avviso__titolo {
+  font: 600 16px/1.35 var(--font-testo);
+}
+
+.avviso__titolo--serif {
+  font: 600 20px/1.2 var(--font-titolo);
+}
+
+.avviso__dettaglio {
+  margin-top: 2px;
+  font: 400 15px/1.4 var(--font-testo);
+}
+
+.avviso--bloccante .avviso__dettaglio {
+  color: var(--carta-fioca);
+}
+
+.avviso__chiudi {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: var(--raggio-pillola);
+  background: transparent;
+}
+
+.avviso__azioni {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spazio-2);
+  width: 100%;
+}
+
+.avviso__istruzione {
+  padding: 10px 12px;
+  border: 1px solid rgba(245, 239, 230, 0.25);
+  border-radius: var(--raggio-card);
+  background: rgba(245, 239, 230, 0.1);
+  font: 400 15px/1.4 var(--font-testo);
+  color: var(--carta-fioca);
+}
+
+.banda-demo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spazio-3);
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--inchiostro);
+  background: var(--avviso);
+}
+
+.banda-demo__etichetta {
+  font: 600 10px/1 var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--inchiostro);
+}
+
+.banda-demo__uscita {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--inchiostro);
+  font: 600 12px/1 var(--font-testo);
+  text-decoration: underline;
+}
+
+.player-compatto {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px;
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-card);
+  background: var(--carta-scura);
+}
+
+.player-compatto__riga {
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-3);
+}
+
+.player-compatto--in-ascolto {
+  border: 1.5px solid var(--ottone);
+}
+
+.player-compatto__play {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: none;
+  border-radius: var(--raggio-pillola);
+  background: var(--vino);
+}
+
+.player-compatto__play:active {
+  background: var(--vino-premuto);
+}
+
+.player-compatto__corpo {
+  flex: 1;
+  min-width: 0;
+}
+
+.player-compatto__tempi {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spazio-2);
+  font: 500 14px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+  color: var(--inchiostro-tenue);
+}
+
+.player-compatto--in-ascolto .player-compatto__tempi {
+  color: var(--inchiostro);
+}
+
+.player-compatto__salti {
+  display: flex;
+  gap: var(--spazio-2);
+  margin-top: var(--spazio-3);
+}
+
+.player-compatto__salto {
+  flex: 1;
+  height: var(--tocco-minimo);
+  border: 1px solid var(--bordo-forte);
+  border-radius: var(--raggio-card);
+  background: var(--carta);
+  font: 600 15px/1 var(--font-testo);
+}
+
+.barra-avanzamento {
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--raggio-pillola);
+  background: rgba(35, 32, 29, 0.16);
+}
+
+.barra-avanzamento__riempimento {
+  display: block;
+  height: 100%;
+  background: var(--ottone);
+}
+
+.barra-download {
+  height: 10px;
+  overflow: hidden;
+  border-radius: var(--raggio-pillola);
+  background: rgba(35, 32, 29, 0.16);
+}
+
+.barra-download--completa {
+  background: var(--vino);
+}
+
+.barra-download__riempimento {
+  height: 100%;
+  background: var(--vino);
+}
+
+.barra-download__riempimento--interrotto {
+  background: var(--ottone);
+}
+
+.voce-download__intestazione {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spazio-3);
+  margin-bottom: var(--spazio-2);
+  font: 500 15px/1.2 var(--font-testo);
+}
+
+.voce-download__nome {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.voce-download__peso {
+  font-variant-numeric: tabular-nums;
+  color: var(--inchiostro-tenue);
+}
+
+.voce-download__nota {
+  margin-top: 6px;
+  font: 400 13px/1.4 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}
+
+.elemento-lista {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 74px;
+  padding: 14px 0;
+  border: none;
+  border-bottom: 1px solid var(--bordo);
+  background: transparent;
+  text-align: left;
+  color: var(--inchiostro);
+}
+
+.elemento-lista--attiva {
+  min-height: 82px;
+  margin: 10px 0;
+  padding: 16px;
+  border: 1.5px solid var(--inchiostro);
+  border-radius: var(--raggio-card);
+  background: var(--carta-scura);
+}
+
+.elemento-lista--fatta .elemento-lista__titolo,
+.elemento-lista--fatta .elemento-lista__dettaglio {
+  color: var(--inchiostro-tenue);
+}
+
+.elemento-lista__segno {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--raggio-pillola);
+  border: 2px solid var(--vino);
+  color: var(--vino);
+  font: 600 16px/1 var(--font-testo);
+}
+
+.elemento-lista__segno--fatta {
+  border: none;
+  background: var(--vino);
+}
+
+.elemento-lista__segno--attiva {
+  width: 44px;
+  height: 44px;
+  border: 2.5px solid var(--inchiostro);
+  background: var(--ottone-vivo);
+  color: var(--inchiostro);
+  font-size: 19px;
+}
+
+.elemento-lista__corpo {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+
+.elemento-lista__dettaglio {
+  display: block;
+}
+
+.elemento-lista__titolo {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font: 600 17px/1.25 var(--font-titolo);
+}
+
+.elemento-lista--attiva .elemento-lista__titolo {
+  font-size: 19px;
+}
+
+.elemento-lista__dettaglio {
+  margin-top: 2px;
+  font: 500 13px/1.3 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}
+
+.elemento-lista--attiva .elemento-lista__dettaglio {
+  color: var(--inchiostro);
+}
+
+.contatore {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: var(--spazio-4);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio-card);
+  background: var(--carta-scura);
+}
+
+.contatore__numero {
+  font: 600 64px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+}
+
+.contatore__numero--grande {
+  font-size: 84px;
+  line-height: 0.82;
+}
+
+.contatore__tacche {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: flex-end;
+  max-width: 132px;
+}
+
+.tacca {
+  width: 3px;
+  height: 34px;
+  background: var(--inchiostro);
+}
+
+.tacca--alta {
+  height: 40px;
+}
+
+.tacca--bassa {
+  height: 20px;
+}
+
+.tacca--media {
+  height: 26px;
+}
+
+.contatore__etichetta {
+  margin-top: var(--spazio-2);
+  font: 500 13px/1.3 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}
+
+.contatore__comandi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spazio-2);
+  margin-left: auto;
+}
+
+.contatore__tasto {
+  width: var(--tocco-minimo);
+  height: var(--tocco-minimo);
+  padding: 0;
+  border: none;
+  border-radius: var(--raggio-pillola);
+  background: var(--vino);
+  color: var(--carta);
+  font: 600 26px/1 var(--font-testo);
+}
+
+.contatore__tasto--meno {
+  border: 1.5px solid var(--bordo-forte);
+  background: transparent;
+  color: var(--inchiostro);
+}
+
+.contatore__tasto:disabled {
+  border-color: var(--bordo);
+  color: var(--inchiostro-tenue);
+}
+
+.marker-tappa {
+  display: grid;
+  place-items: center;
+  width: var(--tocco-minimo);
+  height: var(--tocco-minimo);
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.indicatore-posizione {
+  pointer-events: none;
+}

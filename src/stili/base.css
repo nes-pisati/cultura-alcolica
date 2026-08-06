@@ -1,0 +1,181 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--inchiostro);
+  color: var(--inchiostro);
+  font-family: var(--font-testo);
+  font-size: 17px;
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+.app {
+  position: relative;
+  width: 100%;
+  max-width: var(--colonna-massima);
+  height: 100dvh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--carta);
+}
+
+.schermata {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--carta);
+  padding-top: env(safe-area-inset-top);
+}
+
+.schermata--vino {
+  background: var(--vino);
+  color: var(--carta);
+}
+
+.schermata__corpo {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spazio-4) var(--spazio-6) 0;
+}
+
+.schermata__corpo--scorrevole {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.schermata__piede {
+  flex: none;
+  margin-top: auto;
+  padding-bottom: calc(var(--spazio-8) + env(safe-area-inset-bottom));
+}
+
+.schermata__testata {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-3);
+  padding: var(--spazio-1) var(--spazio-4) var(--spazio-3);
+  border-bottom: 1px solid var(--bordo);
+}
+
+.sovratitolo {
+  font: 600 11px/1 var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ottone);
+}
+
+.sovratitolo--piccolo {
+  font-size: 10px;
+  letter-spacing: 0.11em;
+}
+
+.titolo-schermata {
+  margin: 0;
+  font: 600 34px/1.05 var(--font-titolo);
+  letter-spacing: -0.01em;
+}
+
+.titolo-schermata--largo {
+  font-size: 38px;
+  letter-spacing: -0.015em;
+}
+
+.titolo-tappa {
+  margin: 0;
+  font: 600 26px/1.15 var(--font-titolo);
+  letter-spacing: -0.005em;
+}
+
+.testo-narrativo {
+  margin: 0 0 var(--spazio-3);
+  font: 400 17px/1.55 var(--font-titolo);
+  text-wrap: pretty;
+}
+
+.testo-guida {
+  margin: 0 0 var(--spazio-6);
+  font: 400 18px/1.5 var(--font-titolo);
+  text-wrap: pretty;
+}
+
+.testo-corrente {
+  font: 400 15px/1.4 var(--font-testo);
+}
+
+.numero {
+  font-variant-numeric: tabular-nums;
+}
+
+.riga-indice {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spazio-2);
+  padding: 13px 0;
+  border-bottom: 1px solid var(--bordo);
+}
+
+.riga-indice__voce {
+  font: 400 17px/1 var(--font-titolo);
+  color: var(--inchiostro-tenue);
+}
+
+.riga-indice__punti {
+  flex: 1;
+  border-bottom: 1.5px dotted rgba(35, 32, 29, 0.3);
+  transform: translateY(-4px);
+}
+
+.riga-indice__valore {
+  font: 600 20px/1 var(--font-testo);
+  font-variant-numeric: tabular-nums;
+}
+
+.nota-piede {
+  display: flex;
+  align-items: center;
+  gap: var(--spazio-2);
+  margin-bottom: 14px;
+  font: 500 14px/1.4 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}
+
+.passi {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.passi__segno {
+  width: 26px;
+  height: 4px;
+  border-radius: var(--raggio-pillola);
+  background: rgba(35, 32, 29, 0.2);
+}
+
+.passi__segno--attivo {
+  background: var(--vino);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,48 @@
+:root {
+  --vino: #7b1f2b;
+  --vino-premuto: #5e1620;
+  --vino-tenue: #e6d8d5;
+  --ottone: #8a5f12;
+  --ottone-vivo: #b98a2a;
+  --ottone-chiaro: #e0b552;
+  --avviso: #d98b1f;
+  --carta: #f5efe6;
+  --carta-scura: #ece3d6;
+  --carta-riga: #e2d6c4;
+  --carta-tenue: #efe0d4;
+  --carta-fioca: #d8cdbb;
+  --inchiostro: #23201d;
+  --inchiostro-tenue: #6b645c;
+  --bordo: rgba(35, 32, 29, 0.15);
+  --bordo-forte: rgba(35, 32, 29, 0.28);
+  --velo: rgba(35, 32, 29, 0.32);
+
+  --font-titolo: 'Zilla Slab', Georgia, 'Times New Roman', serif;
+  --font-testo: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --spazio-1: 0.25rem;
+  --spazio-2: 0.5rem;
+  --spazio-3: 0.75rem;
+  --spazio-4: 1rem;
+  --spazio-6: 1.5rem;
+  --spazio-8: 2rem;
+  --spazio-10: 2.5rem;
+
+  --raggio-card: 0.5rem;
+  --raggio-sheet: 1rem;
+  --raggio-pillola: 999px;
+
+  --ombra-flottante: 0 2px 0 rgba(35, 32, 29, 0.14);
+  --ombra-sheet: 0 -12px 24px rgba(35, 32, 29, 0.1);
+  --ombra-sheet-arrivo: 0 -16px 32px rgba(35, 32, 29, 0.22);
+  --ombra-player: 0 -10px 20px rgba(35, 32, 29, 0.08);
+  --ombra-pulsante: 0 4px 0 rgba(35, 32, 29, 0.2);
+  --ombra-pulsante-grande: 0 6px 0 rgba(35, 32, 29, 0.22);
+
+  --tocco-minimo: 3.5rem;
+  --tocco-primario: 4rem;
+  --colonna-massima: 480px;
+
+  color-scheme: light;
+}
