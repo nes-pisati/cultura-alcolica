@@ -452,6 +452,6 @@ export const NUMERI_TOUR = {
 
 export const PESI_DOWNLOAD = {
   mappa: 3.7,
-  audio: 15,
+  audio: 8.2,
   testi: 0.2,
 }

@@ -23,6 +23,8 @@ CLAUDE.md
 design-brief.md
 
 public/tiles/*.pmtiles
+public/audio/*.m4a
+public/audio/manifest.json
 
 test-results/
 playwright-report/
