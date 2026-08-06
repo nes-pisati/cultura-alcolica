@@ -4,11 +4,13 @@ import {
   addProtocol,
   Map as MappaLibre,
   Marker,
+  setWorkerUrl,
   type ErrorEvent,
   type GeoJSONSource,
 } from 'maplibre-gl'
 import { Protocol } from 'pmtiles'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import urlWorkerMappa from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 import { creaStile, VENEZIA } from '../mappa/stile'
 import { PERCORSO, TAPPE } from '../dati/tappe'
 import { MarkerTappa } from './base/MarkerTappa'
@@ -28,6 +30,7 @@ let protocolloRegistrato = false
 
 const registraProtocollo = () => {
   if (protocolloRegistrato) return
+  setWorkerUrl(urlWorkerMappa)
   const protocollo = new Protocol({ metadata: true })
   addProtocol('pmtiles', protocollo.tile)
   protocolloRegistrato = true
