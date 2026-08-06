@@ -60,6 +60,7 @@ export function useAudioGuida(sorgente: string | null) {
       audio.load()
       return
     }
+    if (audio.src.endsWith(sorgente)) return
     audio.src = sorgente
     audio.load()
   }, [elemento, sorgente, sbloccato])
@@ -67,6 +68,7 @@ export function useAudioGuida(sorgente: string | null) {
   const sblocca = useCallback(() => {
     const audio = elemento()
     audio.src = SORGENTE_MUTA
+    setSbloccato(true)
     audio
       .play()
       .then(() => {
@@ -74,14 +76,16 @@ export function useAudioGuida(sorgente: string | null) {
         audio.currentTime = 0
       })
       .catch(() => undefined)
-      .finally(() => setSbloccato(true))
   }, [elemento])
 
   const riproduci = useCallback(() => {
-    elemento()
-      .play()
-      .catch(() => undefined)
-  }, [elemento])
+    const audio = elemento()
+    if (sorgente && !audio.src.endsWith(sorgente)) {
+      audio.src = sorgente
+      audio.load()
+    }
+    audio.play().catch(() => undefined)
+  }, [elemento, sorgente])
 
   const metti = useCallback(() => elemento().pause(), [elemento])
 
