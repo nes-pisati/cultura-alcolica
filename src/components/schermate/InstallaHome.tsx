@@ -69,7 +69,8 @@ export function InstallaHome({ onAvanti, onSalta }: Proprieta) {
         <div className="sovratitolo">Passo 2 di 4</div>
         <h1 className="titolo-schermata">Mettila nella schermata Home</h1>
         <p className="testo-narrativo">
-          Così il telefono non cancella mappa e audio, e l’app si apre a schermo pieno.
+          L’app si apre a schermo pieno, senza le barre di Safari: tutto lo spazio va alla
+          mappa.
         </p>
         <div className="installa__scelta">
           {(['iPhone', 'Android'] as Sistema[]).map((nome) => (
@@ -96,9 +97,9 @@ export function InstallaHome({ onAvanti, onSalta }: Proprieta) {
         </div>
         <div className="schermata__piede">
           <AvvisoDiSistema
-            peso="attenzione"
-            icona="attenzione"
-            titolo="Se salti questo passo, dopo una settimana senza aprirla il telefono può cancellare i file scaricati."
+            peso="informativo"
+            icona="info"
+            titolo="Se salti questo passo l’app resta una scheda del browser: schermo più piccolo e, se lo spazio sul telefono finisce, i file scaricati possono sparire."
           />
           <div className="installa__azioni">
             <PulsanteGrande onClick={onAvanti}>Fatto, l’ho aggiunta</PulsanteGrande>

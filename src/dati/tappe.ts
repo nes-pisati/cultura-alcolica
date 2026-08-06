@@ -13,6 +13,7 @@ export type Tappa = {
   raggio: number
   distanzaDallaPrecedente: number
   durataAudio?: number
+  descrizione?: string
   paragrafi?: string[]
   ordinazioni?: Ordinazione[]
 }
@@ -39,6 +40,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3273, 45.4312],
     raggio: 25,
     distanzaDallaPrecedente: 50,
+    descrizione:
+      'Banco affacciato sul rio di San Trovaso, proprio davanti allo squero: si beve fuori, in piedi sulla fondamenta, guardando le gondole in riparazione. Cicchetti abbondanti, quasi sempre con il baccalà mantecato in prima fila.',
     ordinazioni: [
       { nome: 'Ombra di prosecco', prezzo: '2,50 €' },
       { nome: 'Crostino con baccalà mantecato', prezzo: '2,00 €' },
@@ -51,6 +54,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.328, 45.431],
     raggio: 25,
     distanzaDallaPrecedente: 80,
+    descrizione:
+      'Bottiglieria storica ai piedi del ponte San Trovaso, in famiglia da generazioni. Dentro le pareti sono foderate di bottiglie, fuori si beve sul ponte; i crostini nascono da abbinamenti inventati al momento.',
     ordinazioni: [
       { nome: 'Ombra di pinot della casa', prezzo: '1,50 €' },
       { nome: 'Crostino con tonno e zenzero', prezzo: '1,80 €' },
@@ -77,6 +82,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3298, 45.4331],
     raggio: 25,
     distanzaDallaPrecedente: 60,
+    descrizione:
+      'A due passi da campo Santo Stefano, un banco di cicchetti dove ci si ferma in piedi per un’ombra veloce. Le sarde in saor sono il motivo per cui vale la deviazione.',
     ordinazioni: [
       { nome: 'Ombra di bianco', prezzo: '2,00 €' },
       { nome: 'Sarde in saor', prezzo: '2,50 €' },
@@ -103,6 +110,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3341, 45.4357],
     raggio: 25,
     distanzaDallaPrecedente: 260,
+    descrizione:
+      'Osteria sotto il sottoportego del Volto, aperta dagli anni Trenta, con il soffitto tappezzato di etichette e una carta dei vini lunghissima. Qui l’ombra si beve seduti e con calma.',
     ordinazioni: [
       { nome: 'Ombra di rosso della casa', prezzo: '2,00 €' },
       { nome: 'Tagliere di formaggi', prezzo: '6,00 €' },
@@ -115,6 +124,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3369, 45.4381],
     raggio: 25,
     distanzaDallaPrecedente: 450,
+    descrizione:
+      'Rosticceria di quartiere a pochi passi da Rialto, banco lungo e fritti caldi tutto il giorno. La mozzarella in carrozza è l’istituzione della casa e si mangia in piedi al bancone.',
     ordinazioni: [
       { nome: 'Mozzarella in carrozza', prezzo: '2,80 €' },
       { nome: 'Ombra di bianco', prezzo: '1,80 €' },
@@ -143,6 +154,8 @@ export const TAPPE: Tappa[] = [
     raggio: 20,
     distanzaDallaPrecedente: 150,
     durataAudio: 75,
+    descrizione:
+      'Il bacaro più antico di Venezia, sullo stesso banco dal Quattrocento: niente tavoli, pentole di rame appese al soffitto e due ingressi su due calli diverse. Si beve in piedi, stretti.',
     paragrafi: [
       'Guardate da che parte entra la gente: i turisti passano dalla calle principale, i veneziani girano su calle Galeazza, dove c’è un banco più defilato e si beve in pace. La specialità della casa è il francobollo, un minitramezzino di pane nero che si manda giù in due morsi.',
       'Uscendo, prendete ramo Do Mori fino all’incrocio con ruga dei Spezieri e cercate il pilastro d’angolo: c’è scolpito il rilievo di due pesche con i piccioli intrecciati. Era il simbolo della Confraternita della Persicata, una confettura gelatinosa a base di pesche, in veneziano persichi, che stava sulle tavole fin dal Rinascimento. La versione con le mele cotogne si trova ancora oggi per la festa di San Martino.',
@@ -161,6 +174,8 @@ export const TAPPE: Tappa[] = [
     raggio: 20,
     distanzaDallaPrecedente: 60,
     durataAudio: 55,
+    descrizione:
+      'Banco minuscolo dietro il mercato di Rialto, con il pesce che arriva dalle bancarelle a pochi metri. I cicchetti si compongono al momento, su richiesta; chiude nel primo pomeriggio.',
     paragrafi: [
       'Prima di entrare, tornate indietro di qualche passo in calle dell’Arco e cercate il civico 456: è la porta della botte. La parte inferiore degli stipiti in pietra è stata allargata e sagomata apposta perché ci passassero le botti di vino. Anche allora c’erano priorità indiscutibili.',
       'Poco più in là, in campo Rialto Novo, c’è inciso il simbolo dei Boteri, i bottai. Al tempo della Serenissima erano una confraternita di peso, e fra i loro obblighi c’era quello di riparare gratuitamente le botti del Doge.',
@@ -177,6 +192,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3331, 45.4378],
     raggio: 20,
     distanzaDallaPrecedente: 150,
+    descrizione:
+      'Gestita da due gemelli, zemei in veneziano, vicino a campo San Giacomo. Cicchetti con abbinamenti pensati e una buona scelta di vini al calice.',
     ordinazioni: [
       { nome: 'Ombra della casa', prezzo: '2,00 €' },
       { nome: 'Crostino con radicchio e ricotta', prezzo: '2,20 €' },
@@ -219,6 +236,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3304, 45.4393],
     raggio: 20,
     distanzaDallaPrecedente: 180,
+    descrizione:
+      'Bacaro stretto e rumoroso a poca distanza da Rialto, celebre per il fritto: polpette, moscardini e verdure in pastella da mangiare in piedi sulla calle.',
     ordinazioni: [
       { nome: 'Ombra di merlot', prezzo: '1,80 €' },
       { nome: 'Polpetta fritta', prezzo: '1,80 €' },
@@ -231,6 +250,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3291, 45.4401],
     raggio: 20,
     distanzaDallaPrecedente: 180,
+    descrizione:
+      'Banco di quartiere fra San Polo e Santa Croce, prezzi da veneziani e clientela di casa. I cicchetti del giorno si decidono la mattina e finiscono quando finiscono.',
     ordinazioni: [
       { nome: 'Ombra classica', prezzo: '1,50 €' },
       { nome: 'Cicchetto del giorno', prezzo: '2,00 €' },
@@ -257,6 +278,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3294, 45.4408],
     raggio: 20,
     distanzaDallaPrecedente: 70,
+    descrizione:
+      'Vecchia bottega diventata osteria con divani, libri e concerti la sera, sul rio accanto a campo San Giacomo dell’Orio. È la sosta dove ci si siede davvero.',
     ordinazioni: [
       { nome: 'Ombra di rosso', prezzo: '1,80 €' },
       { nome: 'Spritz select', prezzo: '3,50 €' },
@@ -270,6 +293,8 @@ export const TAPPE: Tappa[] = [
     raggio: 25,
     distanzaDallaPrecedente: 1130,
     durataAudio: 160,
+    descrizione:
+      'Chiosco senza insegna in campo dei Tolentini: si ordina alla finestra, si beve in piedi sul campo e un paninetto costa poco più di un euro. Chiude presto e la domenica resta chiuso.',
     paragrafi: [
       'Siamo scesi lungo rio Marin e ci siamo infilati in un basso sottoportego che ci ha portati in campo de la Lana, e da lì in campo dei Tolentini. Nell’angolo affacciato sul canale c’è un chiosco minuscolo con due tavoli di pietra fuori e nessuna insegna che valga la pena di fotografare: è il Bacareto da Lele, e per mezza Venezia è il bacaro. Dalle prime ore del mattino ci si fermano operai, netturbini in pausa ombra e studenti delle università, che qui attorno sono di casa.',
       'Si beve un’ombra che costa meno di un caffè e si mangia un paninetto farcito, uno di quelli piccoli che spariscono in tre morsi e di cui se ne prendono sempre due. Non si entra e non ci si siede: si ordina alla finestra, si sta in piedi sul campo, si guarda passare l’acqua. Chiude presto e la domenica non apre: se lo trovate serrato, è la vita.',
@@ -302,6 +327,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3271, 45.4427],
     raggio: 20,
     distanzaDallaPrecedente: 240,
+    descrizione:
+      'Banco piccolo in fondamenta Cannaregio, servizio spiccio e nessuna cerimonia. I cicchetti di pesce si preparano la mattina e il disco volante, due dischi di pane farciti, è la specialità.',
     ordinazioni: [
       { nome: 'Ombra di bianco', prezzo: '1,50 €' },
       { nome: 'Disco volante', prezzo: '2,00 €' },
@@ -314,6 +341,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3285, 45.4438],
     raggio: 20,
     distanzaDallaPrecedente: 220,
+    descrizione:
+      'Cantina di vino sfuso lungo il rio: i veneziani ci vengono a riempire la bottiglia, gli altri si fermano per un’ombra al banco. Cicchetti essenziali, prezzi di un’altra epoca.',
     ordinazioni: [
       { nome: 'Ombra sfusa', prezzo: '1,20 €' },
       { nome: 'Mezzo uovo con acciuga', prezzo: '1,50 €' },
@@ -341,6 +370,8 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3281, 45.4464],
     raggio: 25,
     distanzaDallaPrecedente: 240,
+    descrizione:
+      'Ultima tappa sulla fondamenta degli Ormesini, con la barca ormeggiata davanti che d’estate fa da panchina. Crostini di carne salada, musica dal vivo e serate che finiscono tardi.',
     ordinazioni: [
       { nome: 'Ombra di rosso', prezzo: '2,00 €' },
       { nome: 'Crostino con carne salada', prezzo: '2,50 €' },

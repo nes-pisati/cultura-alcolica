@@ -272,8 +272,14 @@ export function SchermataMappa({
               <h2 className="titolo-tappa sheet__titolo">{tappaAttiva.titolo}</h2>
               <div className="sheet__azioni">
                 <PulsanteGrande onClick={onEntra}>
-                  <IconaPlay dimensione={20} colore="#f5efe6" />
-                  {`Ascolta · ${formattaTempo(durataAudio)}`}
+                  {haAudio ? (
+                    <>
+                      <IconaPlay dimensione={20} colore="#f5efe6" />
+                      {`Ascolta · ${formattaTempo(durataAudio)}`}
+                    </>
+                  ) : (
+                    'Scopri'
+                  )}
                 </PulsanteGrande>
                 <PulsantePillola onClick={onSonoQui}>Sono qui</PulsantePillola>
               </div>

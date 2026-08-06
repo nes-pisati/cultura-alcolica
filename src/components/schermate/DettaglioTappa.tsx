@@ -66,6 +66,7 @@ export function DettaglioTappa({
             <span className="dettaglio__segnaposto">foto del bancone · 4:3</span>
           </div>
         )}
+        {tappa.descrizione && <p className="testo-narrativo">{tappa.descrizione}</p>}
         {tappa.paragrafi?.map((paragrafo, indice) => (
           <p
             key={indice}
