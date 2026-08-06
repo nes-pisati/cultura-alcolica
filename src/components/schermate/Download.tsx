@@ -28,7 +28,11 @@ const voci = [
     peso: PESI_DOWNLOAD.audio,
     icona: <IconaOnde colore="#23201d" />,
   },
-  { nome: 'Testi e percorso', peso: PESI_DOWNLOAD.testi, icona: <IconaDocumento colore="#23201d" /> },
+  {
+    nome: 'Testi, percorso e caratteri',
+    peso: PESI_DOWNLOAD.testi,
+    icona: <IconaDocumento colore="#23201d" />,
+  },
 ]
 
 export function Download({ onAvanti }: { onAvanti: () => void }) {

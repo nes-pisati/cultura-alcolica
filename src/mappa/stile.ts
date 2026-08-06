@@ -5,6 +5,9 @@ type Stile = NonNullable<Exclude<MapOptions['style'], string>>
 
 export const URL_MAPPA = '/tiles/venezia.pmtiles'
 
+const URL_FONT = `${import.meta.env.BASE_URL}mappa/font/{fontstack}/{range}.pbf`
+const URL_SPRITE = `${import.meta.env.BASE_URL}mappa/sprite/light`
+
 export const VENEZIA = {
   centro: [12.3358, 45.4372] as [number, number],
   zoom: 14.5,
@@ -17,8 +20,8 @@ const SORGENTE = 'protomaps'
 
 export const creaStile = (): Stile => ({
   version: 8,
-  glyphs: 'https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf',
-  sprite: 'https://protomaps.github.io/basemaps-assets/sprites/v4/light',
+  glyphs: URL_FONT,
+  sprite: URL_SPRITE,
   sources: {
     [SORGENTE]: {
       type: 'vector',

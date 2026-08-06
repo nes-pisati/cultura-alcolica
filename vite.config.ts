@@ -12,7 +12,7 @@ export default defineConfig({
       registerType: 'prompt',
       injectRegister: false,
       injectManifest: {
-        globPatterns: ['**/*.{js,mjs,css,html,svg,png,ico,woff2,json}'],
+        globPatterns: ['**/*.{js,mjs,css,html,svg,png,ico,woff2,json,pbf}'],
         globIgnores: ['**/tiles/**', '**/audio/**'],
       },
       devOptions: {
