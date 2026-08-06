@@ -456,8 +456,14 @@
   border-bottom: 1px solid var(--bordo);
 }
 
-.ordini__riga:last-child {
+.ordini__riga:last-of-type {
   border-bottom: none;
+}
+
+.ordini__nota {
+  margin: 8px 0 0;
+  font: 400 14px/1.35 var(--font-testo);
+  color: var(--inchiostro-tenue);
 }
 
 .ordini__nome {

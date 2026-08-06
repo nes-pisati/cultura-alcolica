@@ -82,6 +82,7 @@ export function DettaglioTappa({
                 <span className="ordini__prezzo">{ordinazione.prezzo}</span>
               </div>
             ))}
+            <p className="ordini__nota">Prezzi indicativi, da confermare al banco.</p>
           </div>
         )}
         {prossima && (
