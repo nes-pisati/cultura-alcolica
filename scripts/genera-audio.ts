@@ -7,6 +7,7 @@ import { TAPPE } from '../src/dati/tappe.ts'
 const VOCE = process.env.VOCE ?? 'Alice'
 const CARTELLA = 'public/audio'
 const MANIFEST = join(CARTELLA, 'manifest.json')
+const DURATE = 'src/dati/durate.ts'
 
 type AudioGenerato = {
   impronta: string
@@ -62,5 +63,14 @@ for (const tappa of TAPPE) {
 }
 
 writeFileSync(MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`)
+
+const righe = Object.entries(manifest)
+  .sort(([primo], [secondo]) => Number(primo) - Number(secondo))
+  .map(([id, audio]) => `  ${id}: ${audio.durata},`)
+
+writeFileSync(
+  DURATE,
+  `export const DURATE_AUDIO: Record<number, number> = {\n${righe.join('\n')}\n}\n`,
+)
 
 console.log(`\nvoce: ${VOCE} · generate: ${generate} · invariate: ${saltate}`)

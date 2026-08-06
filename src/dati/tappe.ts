@@ -12,7 +12,6 @@ export type Tappa = {
   coordinate: [number, number]
   raggio: number
   distanzaDallaPrecedente: number
-  durataAudio?: number
   descrizione?: string
   paragrafi?: string[]
   ordinazioni?: Ordinazione[]
@@ -26,7 +25,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3269, 45.4314],
     raggio: 35,
     distanzaDallaPrecedente: 0,
-    durataAudio: 150,
     paragrafi: [
       'Il tour comincia davanti all’unico cantiere di gondole che si può ancora guardare da vicino senza salire su una barca. Lo squero è il cantiere dove si costruiscono e si riparano gli scafi in legno, e questo di San Trovaso lavora sullo stesso rio da secoli. La cosa che colpisce subito è l’edificio: tetto spiovente, legno a vista, ballatoi. Sembra una baita di montagna finita per sbaglio in laguna, e in un certo senso è proprio così, perché i maestri d’ascia arrivavano dal Cadore assieme al legname che scendeva lungo il Piave.',
       'Una gondola è fatta di otto legni diversi e non è simmetrica: il fianco sinistro è più largo del destro di circa venti centimetri, perché deve compensare il peso del gondoliere e la spinta di un remo solo. I maestri piegano il legno a vapore e un tempo rendevano impermeabili gli scafi con la pece. Non è un mestiere che si impara sui libri, si impara guardando.',
@@ -68,7 +66,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3303, 45.4333],
     raggio: 45,
     distanzaDallaPrecedente: 440,
-    durataAudio: 165,
     paragrafi: [
       'Abbiamo attraversato il Canal Grande sul ponte di legno dell’Accademia, lasciandoci sulla destra la vista verso il bacino di San Marco, e siamo sbucati in uno dei campi più larghi della città. Al centro c’è la statua di Niccolò Tommaseo, che i veneziani chiamano con affetto il cagalibri: la pila di libri dietro la schiena del poeta è stata aggiunta per ragioni di statica, ma si presta a equivoci che nessuno qui ha mai voluto correggere.',
       'In questo campo c’era una delle farmacie autorizzate a produrre la Theriaca, la medicina che secondo i veneziani curava tutti i mali. La ricetta era attribuita ad Andromaco, medico personale di Nerone, che l’aveva lasciata scritta in forma di poesia. Fra i molti ingredienti c’erano polvere di testicolo di cervo e carne di vipera, e soprattutto l’oppio, che al rimedio dava buona parte della sua fama.',
@@ -96,7 +93,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.332, 45.4347],
     raggio: 30,
     distanzaDallaPrecedente: 340,
-    durataAudio: 175,
     paragrafi: [
       'Siamo passati per il campiello Novo, detto anche dei Morti, perché prima di Napoleone i morti si seppellivano nelle chiese o subito accanto, e questo campo era terra di sepolture. Poco più in là si apre la corte delle Pizzocchere: le pizzocchere erano donne, spesso vedove o prostitute pentite, che conducevano vita monastica senza prendere i voti e portavano un abito povero di lana grezza, da cui il nome.',
       'All’incrocio con rio terà degli Assassini il toponimo dice tutto: qui si ritrovavano di frequente i cadaveri dei malcapitati uccisi durante la notte, e per scoraggiare gli agguati furono messi degli altarini votivi, perché una fiammella accesa era il modo più economico di illuminare una calle buia.',
@@ -138,7 +134,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3359, 45.438],
     raggio: 40,
     distanzaDallaPrecedente: 100,
-    durataAudio: 210,
     paragrafi: [
       'Salendo da salizada Pio X, in mezzo alle bancarelle, alzate lo sguardo sopra le vetrine: c’è una testa d’oro in bronzo dorato solo in superficie. Era l’insegna dell’antica spezieria Alla Testa d’Oro, e quel capo cinto d’alloro è probabilmente Andromaco. Al popolo, in gran parte analfabeta, l’insegna diceva che lì dentro c’erano sapienza e conoscenza preziose come l’oro. Sul muro posteriore si leggono ancora i resti della scritta teriachia andromachi: qui la Theriaca si produceva ogni quattro mesi, mentre alle altre farmacie era concesso farla una volta all’anno.',
       'Il ponte, prima, non c’era: si attraversava in barca, poi lo fecero di legno e andava regolarmente a fuoco o marciva. Nel 1507 si decise la pietra, ma le discussioni su progetto e finanziamento durarono decenni. Gli abitanti di San Polo, per lo più prostitute e piccoli commercianti, presero a deriderlo: gli uomini dicevano che il ponte sarebbe stato finito quando il membro avrebbe messo l’unghia, le donne che sarebbe finito quando a loro avrebbe preso fuoco la fica. Quando il ponte fu davvero costruito, fra il 1588 e il 1591, l’amministrazione si vendicò facendo scolpire quei due bassorilievi osceni sul palazzo dei Camerlenghi, proprio dirimpetto: guardateli, sono ancora lì.',
@@ -153,7 +148,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3346, 45.4385],
     raggio: 20,
     distanzaDallaPrecedente: 150,
-    durataAudio: 75,
     descrizione:
       'Il bacaro più antico di Venezia, sullo stesso banco dal Quattrocento: niente tavoli, pentole di rame appese al soffitto e due ingressi su due calli diverse. Si beve in piedi, stretti.',
     paragrafi: [
@@ -173,7 +167,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3343, 45.4384],
     raggio: 20,
     distanzaDallaPrecedente: 60,
-    durataAudio: 55,
     descrizione:
       'Banco minuscolo dietro il mercato di Rialto, con il pesce che arriva dalle bancarelle a pochi metri. I cicchetti si compongono al momento, su richiesta; chiude nel primo pomeriggio.',
     paragrafi: [
@@ -206,7 +199,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3322, 45.438],
     raggio: 30,
     distanzaDallaPrecedente: 100,
-    durataAudio: 195,
     paragrafi: [
       'Il ponte che avete davanti si chiama Ponte Storto, e l’edificio dirimpetto è il palazzo della nobile famiglia Cappello. Qui nacque Bianca Cappello, e la sua è la storia d’amore più sciagurata e più fortunata che Venezia ricordi.',
       'Era bella, raffinata e intelligente. La madre, una Contarini, morì quando Bianca aveva dieci anni, e il padre si risposò con Lucrezia Grimani, nipote di un doge e signora che non perdeva occasione di ricordarlo. La ragazza, che la matrigna non la sopportava proprio, fece conoscenza con Pietro Bonaventuri, un giovane contabile del vicino Banco Salviati, filiale di una banca toscana. Il ragazzo millantava parentele importanti e le prometteva a Firenze una vita agiata. Sedotta al punto di affidargli i gioielli della propria dote, nella notte fra il 28 e il 29 novembre 1563, a quindici anni, Bianca scappò con lui abbandonando di nascosto la casa paterna.',
@@ -221,7 +213,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3317, 45.4385],
     raggio: 30,
     distanzaDallaPrecedente: 150,
-    durataAudio: 205,
     paragrafi: [
       'Siamo nel cuore del quartiere a luci rosse di Venezia, e il nome del ponte non lascia dubbi su quale fosse la mercanzia esposta. Le prostitute si affacciavano a seno scoperto dalle finestre per richiamare i clienti, e la Repubblica non solo lo tollerava: lo incoraggiava, convinta che fosse il modo migliore per distogliere gli uomini dall’adulterio e soprattutto dalla sodomia.',
       'I numeri spiegano perché la cosa fosse presa sul serio. Nel 1340 a Venezia le prostitute censite erano 11.654 su una popolazione di 120.000 abitanti. Nel 1360 si decise di raggrupparle in un luogo circoscritto e presidiato da pubblici ufficiali, il Castelletto, un’area vicino a Rialto oggi demolita, dove c’erano delle nicchie chiamate volte in cui si consumavano i rapporti. Le donne non potevano uscirne se non il sabato mattina, pena venticinque frustate e dieci lire di multa. Al Castelletto potevano accedere anche i chierici, il che dice parecchio sul realismo della Serenissima.',
@@ -264,7 +255,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3287, 45.4409],
     raggio: 45,
     distanzaDallaPrecedente: 260,
-    durataAudio: 165,
     paragrafi: [
       'Uno dei campi più vivi di Venezia, e uno dei pochi che sembra ancora un quartiere: mamme e anziani sulle panchine all’ombra dei platani, ragazzini che corrono in monopattino, feste e concerti organizzati dalle associazioni di residenti, che curano anche gli ortaggi piantati nelle aiuole pubbliche. Dal campanile della chiesa un uomo con la conchiglia ricorda che da qui partivano i pellegrinaggi per Santiago de Compostela.',
       'L’edificio bianco dall’altra parte del ponte dell’Anatomia era il teatro anatomico. Dopo una legge del 1368 i medici veneziani si esercitavano qui nelle dissezioni dei cadaveri. In città esistevano due collegi, quello dei medici fisici e quello dei chirurghi, in perenne polemica fra loro; per pacificare il clima la Repubblica nel 1545 li fuse in uno solo, che nel 1671 trovò sede in questo edificio, con una grande sala a tre ordini di gradinate ellittiche e, al piano superiore, biblioteca e archivio. Un incendio lo devastò nel 1800 e oggi sono appartamenti e uffici.',
@@ -292,7 +282,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3203, 45.4366],
     raggio: 25,
     distanzaDallaPrecedente: 1130,
-    durataAudio: 160,
     descrizione:
       'Chiosco senza insegna in campo dei Tolentini: si ordina alla finestra, si beve in piedi sul campo e un paninetto costa poco più di un euro. Chiude presto e la domenica resta chiuso.',
     paragrafi: [
@@ -313,7 +302,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3249, 45.4423],
     raggio: 40,
     distanzaDallaPrecedente: 1100,
-    durataAudio: 155,
     paragrafi: [
       'Abbiamo attraversato il ponte degli Scalzi e risalito il rio terà Lista di Spagna fra trolley e fast food. Il termine terà indica che lì un tempo scorreva un canale, poi interrato sotto il governo austriaco a metà Ottocento: quando leggete rio terà, state camminando sopra dell’acqua.',
       'Nella chiesa dei Santi Geremia e Lucia si trovano le reliquie di santa Lucia, protettrice degli occhi e degli oculisti. La leggenda racconta che si fosse cavata gli occhi per donarli, su un piatto d’argento, a un giovane che si era innamorato del loro splendore. Le reliquie sono qui perché la chiesa di Santa Lucia e il suo monastero furono demoliti nel 1861 per costruire la stazione ferroviaria, e una targa in marmo nel piazzale davanti alla stazione ricorda ancora la facciata scomparsa.',
@@ -355,7 +343,6 @@ export const TAPPE: Tappa[] = [
     coordinate: [12.3265, 45.4452],
     raggio: 40,
     distanzaDallaPrecedente: 290,
-    durataAudio: 215,
     paragrafi: [
       'Siamo arrivati per calle Calesele attraversando il Ghetto Novissimo, e adesso siamo nel campo che ha dato un nome a tutti i ghetti del mondo. Alzate la testa: le case qui sono altissime per gli standard veneziani, fino a otto piani, con soffitti bassi e scale strette. Non è una scelta architettonica, è una conseguenza: chi ci abitava non poteva espandersi in orizzontale e nel periodo di massima densità qui vivevano cinquemila persone.',
       'Gli ebrei erano presenti a Venezia dal 1152, perché la città è sempre stata tollerante verso le religioni diverse, un po’ per indole libera e molto per convenienza commerciale. La loro presenza però suscitava malumori, sia per la storica ostilità cristiana sia per l’invidia verso il potere finanziario di chi esercitava il prestito di denaro, un mestiere che ai cristiani era vietato. Nel 1516 la Repubblica decise di relegarli in una piccola isola dove prima c’erano delle fonderie che gettavano le bombarde: da getto viene ghetto, e da qui la parola è andata in tutto il mondo.',
@@ -476,7 +463,7 @@ export const PERCORSO: [number, number][] = [
 export const NUMERI_TOUR = {
   tappe: TAPPE.length,
   bacari: TAPPE.filter((tappa) => tappa.tipo === 'bacaro').length,
-  conAudio: TAPPE.filter((tappa) => tappa.durataAudio).length,
+  conAudio: TAPPE.filter((tappa) => tappa.paragrafi).length,
   distanza: '6,3 km',
   durata: '4h 15m',
 }

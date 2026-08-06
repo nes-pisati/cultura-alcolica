@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { urlAudio } from '../audio/cacheAudio'
+import { DURATE_AUDIO } from '../dati/durate'
 import { TAPPE } from '../dati/tappe'
 import { useAudioGuida } from '../hooks/useAudioGuida'
 import { svuotaOffline } from '../offline/cache'
@@ -66,7 +67,7 @@ export function useTour() {
     azzera: azzeraAudio,
   } = useAudioGuida(sorgenteAudio)
 
-  const durataAudio = durata || tappaAttiva.durataAudio || 0
+  const durataAudio = durata || DURATE_AUDIO[tappaAttiva.id] || 0
 
   useEffect(() => {
     if (schermata === 'fine' || daRiprendere) return
