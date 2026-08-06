@@ -1,4 +1,11 @@
 import { useEffect, useState } from 'react'
+import {
+  audioGiaScaricati,
+  riprendiAudio,
+  scaricaAudio,
+  sospendiAudio,
+  URL_AUDIO,
+} from '../../audio/cacheAudio'
 import { mappaScaricata, scaricaMappa } from '../../mappa/cacheMappa'
 import { NUMERI_TOUR, PESI_DOWNLOAD } from '../../dati/tappe'
 import { formattaMegabyte } from '../../utilita/formato'
@@ -32,11 +39,11 @@ export function Download({ onAvanti }: { onAvanti: () => void }) {
   const [testiPronti, setTestiPronti] = useState(false)
 
   useEffect(() => {
-    mappaScaricata()
-      .then((presente) => {
-        setMappaPronta(presente)
-        if (presente) {
-          setAudioScaricati(PESI_DOWNLOAD.audio)
+    Promise.all([mappaScaricata(), audioGiaScaricati()])
+      .then(([mappa, audio]) => {
+        setMappaPronta(mappa)
+        setAudioScaricati((audio / URL_AUDIO.length) * PESI_DOWNLOAD.audio)
+        if (mappa && audio === URL_AUDIO.length) {
           setTestiPronti(true)
           setFase('fatto')
         }
@@ -44,26 +51,32 @@ export function Download({ onAvanti }: { onAvanti: () => void }) {
       .catch(() => setMappaPronta(false))
   }, [])
 
-  useEffect(() => {
-    if (fase !== 'corso' || !mappaPronta) return
-    if (audioScaricati >= PESI_DOWNLOAD.audio) {
+  const avvia = async () => {
+    setFase('corso')
+    try {
+      if (!mappaPronta) {
+        await scaricaMappa()
+        setMappaPronta(true)
+      }
+      await scaricaAudio((fatti, totale) =>
+        setAudioScaricati((fatti / totale) * PESI_DOWNLOAD.audio),
+      )
+      setAudioScaricati(PESI_DOWNLOAD.audio)
       setTestiPronti(true)
       setFase('fatto')
+    } catch {
+      setFase('errore')
+    }
+  }
+
+  const alternaPausa = () => {
+    if (fase === 'pausa') {
+      riprendiAudio()
+      setFase('corso')
       return
     }
-    const timer = window.setTimeout(
-      () => setAudioScaricati((valore) => Math.min(valore + 0.9, PESI_DOWNLOAD.audio)),
-      300,
-    )
-    return () => window.clearTimeout(timer)
-  }, [fase, mappaPronta, audioScaricati])
-
-  const avvia = () => {
-    setFase('corso')
-    if (mappaPronta) return
-    scaricaMappa()
-      .then(() => setMappaPronta(true))
-      .catch(() => setFase('errore'))
+    sospendiAudio()
+    setFase('pausa')
   }
 
   const scaricati =
@@ -185,7 +198,7 @@ export function Download({ onAvanti }: { onAvanti: () => void }) {
                 neutro
                 largo
                 className="download__pausa"
-                onClick={() => setFase(fase === 'pausa' ? 'corso' : 'pausa')}
+                onClick={alternaPausa}
               >
                 {fase === 'pausa' ? 'Riprendi' : 'Metti in pausa'}
               </PulsantePillola>
