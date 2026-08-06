@@ -11,6 +11,7 @@ type Proprieta = {
   prossima?: Tappa
   inRiproduzione: boolean
   posizione: number
+  durata: number
   onIndietro: () => void
   onAlterna: () => void
   onSalta: (secondi: number) => void
@@ -25,13 +26,14 @@ export function DettaglioTappa({
   prossima,
   inRiproduzione,
   posizione,
+  durata,
   onIndietro,
   onAlterna,
   onSalta,
   onOmbra,
   onApriPlayer,
 }: Proprieta) {
-  const durataAudio = tappa.durataAudio ?? 0
+  const durataAudio = durata
   const haAudio = durataAudio > 0
   const percentuale = haAudio ? Math.min((posizione / durataAudio) * 100, 100) : 0
   const bacaro = tappa.tipo === 'bacaro'

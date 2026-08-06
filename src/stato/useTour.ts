@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { urlAudio } from '../audio/cacheAudio'
 import { TAPPE } from '../dati/tappe'
+import { useAudioGuida } from '../hooks/useAudioGuida'
+import { svuotaOffline } from '../offline/cache'
+import { leggiStato, salvaStato, svuotaStato } from './persistenza'
 
 export type Schermata =
   | 'benvenuto'
@@ -18,76 +22,87 @@ export type Ombra = {
   ora: string
 }
 
+export const SCHERMATE_TOUR: Schermata[] = ['mappa', 'dettaglio', 'player', 'conto', 'elenco']
+
 const oraCorrente = () =>
   new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
 
+const schermataDaRiprendere = (salvata: Schermata) =>
+  salvata === 'player' ? 'dettaglio' : salvata
+
 export function useTour() {
-  const [schermata, setSchermata] = useState<Schermata>('benvenuto')
+  const [salvato] = useState(leggiStato)
+  const ripresa = salvato !== null && SCHERMATE_TOUR.includes(salvato.schermata)
+
+  const [schermata, setSchermata] = useState<Schermata>(
+    ripresa ? 'inizia' : (salvato?.schermata ?? 'benvenuto'),
+  )
+  const [daRiprendere, setDaRiprendere] = useState<Schermata | null>(
+    ripresa && salvato ? schermataDaRiprendere(salvato.schermata) : null,
+  )
   const [audioSbloccato, setAudioSbloccato] = useState(false)
-  const [indiceAttiva, setIndiceAttiva] = useState(0)
-  const [completate, setCompletate] = useState<number[]>([])
-  const [attivate, setAttivate] = useState<number[]>([])
-  const [ombre, setOmbre] = useState<Ombra[]>([])
-  const [inRiproduzione, setInRiproduzione] = useState(false)
-  const [posizioneAudio, setPosizioneAudio] = useState(0)
+  const [indiceAttiva, setIndiceAttiva] = useState(salvato?.indiceAttiva ?? 0)
+  const [completate, setCompletate] = useState<number[]>(salvato?.completate ?? [])
+  const [attivate, setAttivate] = useState<number[]>(salvato?.attivate ?? [])
+  const [ombre, setOmbre] = useState<Ombra[]>(salvato?.ombre ?? [])
   const [arrivo, setArrivo] = useState(false)
   const [demo, setDemo] = useState(false)
-  const [inizio, setInizio] = useState<string | null>(null)
-  const [inizioIstante, setInizioIstante] = useState<number | null>(null)
+  const [inizio, setInizio] = useState<string | null>(salvato?.inizio ?? null)
+  const [inizioIstante, setInizioIstante] = useState<number | null>(salvato?.inizioIstante ?? null)
 
   const tappaAttiva = TAPPE[indiceAttiva]
+  const sorgenteAudio = tappaAttiva.paragrafi ? urlAudio(tappaAttiva.id) : null
+
+  const {
+    inRiproduzione,
+    posizione: posizioneAudio,
+    durata,
+    sblocca,
+    riproduci,
+    metti,
+    alterna,
+    salta,
+    riavvia,
+    azzera: azzeraAudio,
+  } = useAudioGuida(sorgenteAudio)
+
+  const durataAudio = durata || tappaAttiva.durataAudio || 0
 
   useEffect(() => {
-    if (!inRiproduzione) return
-    const timer = window.setInterval(() => setPosizioneAudio((valore) => valore + 1), 1000)
-    return () => window.clearInterval(timer)
-  }, [inRiproduzione])
-
-  useEffect(() => {
-    const durata = tappaAttiva.durataAudio ?? 0
-    if (posizioneAudio < durata) return
-    setInRiproduzione(false)
-    setPosizioneAudio(durata)
-  }, [posizioneAudio, tappaAttiva.durataAudio])
+    if (schermata === 'fine' || daRiprendere) return
+    salvaStato({ schermata, indiceAttiva, completate, attivate, ombre, inizio, inizioIstante })
+  }, [schermata, daRiprendere, indiceAttiva, completate, attivate, ombre, inizio, inizioIstante])
 
   const vai = useCallback((prossima: Schermata) => setSchermata(prossima), [])
 
   const sbloccaAudio = useCallback(() => {
+    sblocca()
     setAudioSbloccato(true)
-    setInizio(oraCorrente())
-    setInizioIstante(Date.now())
-    setSchermata('mappa')
-  }, [])
+    setInizio((valore) => valore ?? oraCorrente())
+    setInizioIstante((valore) => valore ?? Date.now())
+    setSchermata(daRiprendere ?? 'mappa')
+    setDaRiprendere(null)
+  }, [daRiprendere, sblocca])
 
-  const riproduci = useCallback(() => setInRiproduzione(true), [])
-  const metti = useCallback(() => setInRiproduzione(false), [])
-
-  const alterna = useCallback(() => setInRiproduzione((valore) => !valore), [])
-
-  const salta = useCallback(
-    (secondi: number) =>
-      setPosizioneAudio((valore) =>
-        Math.min(Math.max(valore + secondi, 0), tappaAttiva.durataAudio ?? 0),
-      ),
-    [tappaAttiva.durataAudio],
+  const apriTappa = useCallback(
+    (id: number) => {
+      const indice = TAPPE.findIndex((tappa) => tappa.id === id)
+      if (indice < 0) return
+      setIndiceAttiva(indice)
+      azzeraAudio()
+      setSchermata('dettaglio')
+    },
+    [azzeraAudio],
   )
-
-  const apriTappa = useCallback((id: number) => {
-    const indice = TAPPE.findIndex((tappa) => tappa.id === id)
-    if (indice < 0) return
-    setIndiceAttiva(indice)
-    setPosizioneAudio(0)
-    setSchermata('dettaglio')
-  }, [])
 
   const segnalaArrivo = useCallback(() => {
     setArrivo(true)
-    setPosizioneAudio(0)
-    setInRiproduzione((tappaAttiva.durataAudio ?? 0) > 0)
+    riavvia()
+    if (sorgenteAudio) riproduci()
     setAttivate((elenco) =>
       elenco.includes(tappaAttiva.id) ? elenco : [...elenco, tappaAttiva.id],
     )
-  }, [tappaAttiva.durataAudio, tappaAttiva.id])
+  }, [riavvia, riproduci, sorgenteAudio, tappaAttiva.id])
 
   const entraNellaTappa = useCallback(() => {
     setArrivo(false)
@@ -96,23 +111,30 @@ export function useTour() {
 
   const annullaArrivo = useCallback(() => {
     setArrivo(false)
-    setInRiproduzione(false)
-    setPosizioneAudio(0)
-  }, [])
+    azzeraAudio()
+  }, [azzeraAudio])
+
+  const terminaTour = useCallback(() => {
+    azzeraAudio()
+    setArrivo(false)
+    setDaRiprendere(null)
+    svuotaStato()
+    void svuotaOffline()
+    setSchermata('fine')
+  }, [azzeraAudio])
 
   const concludiTappa = useCallback(() => {
-    setInRiproduzione(false)
-    setPosizioneAudio(0)
+    azzeraAudio()
     setCompletate((elenco) =>
       elenco.includes(tappaAttiva.id) ? elenco : [...elenco, tappaAttiva.id],
     )
     if (indiceAttiva === TAPPE.length - 1) {
-      setSchermata('fine')
+      terminaTour()
       return
     }
     setIndiceAttiva(indiceAttiva + 1)
     setSchermata('mappa')
-  }, [indiceAttiva, tappaAttiva.id])
+  }, [azzeraAudio, indiceAttiva, tappaAttiva.id, terminaTour])
 
   const aggiungiOmbra = useCallback(
     () => setOmbre((elenco) => [{ tappaId: tappaAttiva.id, ora: oraCorrente() }, ...elenco]),
@@ -126,14 +148,15 @@ export function useTour() {
     setCompletate([])
     setAttivate([])
     setOmbre([])
-    setInRiproduzione(false)
-    setPosizioneAudio(0)
+    azzeraAudio()
     setArrivo(false)
     setInizio(null)
     setInizioIstante(null)
     setAudioSbloccato(false)
+    setDaRiprendere(null)
+    svuotaStato()
     setSchermata('benvenuto')
-  }, [])
+  }, [azzeraAudio])
 
   const avanzamento = useMemo(
     () => ({
@@ -149,6 +172,8 @@ export function useTour() {
 
   return {
     schermata,
+    ripresa: daRiprendere !== null,
+    tourInCorso: SCHERMATE_TOUR.includes(schermata),
     audioSbloccato,
     tappaAttiva,
     indiceAttiva,
@@ -157,6 +182,7 @@ export function useTour() {
     ombre,
     inRiproduzione,
     posizioneAudio,
+    durataAudio,
     arrivo,
     demo,
     inizio,
@@ -173,6 +199,7 @@ export function useTour() {
     entraNellaTappa,
     annullaArrivo,
     concludiTappa,
+    terminaTour,
     aggiungiOmbra,
     togliOmbra,
     azzera,

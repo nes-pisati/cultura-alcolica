@@ -994,3 +994,50 @@
   flex-direction: column;
   gap: var(--spazio-3);
 }
+
+.barra-termina {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: flex-end;
+  padding: calc(env(safe-area-inset-top) + 6px) 12px 0;
+  pointer-events: none;
+}
+
+.barra-termina__pulsante {
+  pointer-events: auto;
+  min-height: 34px;
+  padding: 0 14px;
+  background: var(--carta);
+  font-size: 13px;
+  box-shadow: 0 2px 0 rgba(35, 32, 29, 0.1);
+}
+
+.app--termina .schermata {
+  padding-top: calc(env(safe-area-inset-top) + 44px);
+}
+
+.app--termina .schermata-mappa__alto {
+  padding-top: calc(env(safe-area-inset-top) + 44px);
+}
+
+.velo-modale {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: var(--velo);
+}
+
+.sheet--conferma {
+  z-index: 31;
+  gap: var(--spazio-2);
+}
+
+.conferma__testo {
+  margin: 0 0 var(--spazio-2);
+  font: 400 15px/1.45 var(--font-testo);
+  color: var(--inchiostro-tenue);
+}

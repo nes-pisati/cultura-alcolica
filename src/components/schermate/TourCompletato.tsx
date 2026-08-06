@@ -48,14 +48,14 @@ export function TourCompletato({ tappeFatte, ombre, durata, onRivedi, onAzzera }
           </div>
         </div>
         <p className="fine__nota">
-          Il conto delle ombre resta sul telefono e non va da nessuna parte. Se domani vuoi rifare il
-          giro, riparte da zero.
+          Il conto delle ombre non è mai uscito dal telefono. Ora è cancellato, insieme a mappa e
+          audio scaricati: se domani vuoi rifare il giro, si riparte dal download.
         </p>
         <div className="schermata__piede">
           <div className="fine__azioni">
             <PulsanteGrande onClick={onRivedi}>Rivedi il percorso</PulsanteGrande>
             <PulsantePillola neutro largo onClick={onAzzera}>
-              Azzera il tour
+              Torna all’inizio
             </PulsantePillola>
           </div>
         </div>

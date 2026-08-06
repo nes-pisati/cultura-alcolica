@@ -15,6 +15,7 @@ type Proprieta = {
   totaleTappe: number
   inRiproduzione: boolean
   posizione: number
+  durata: number
   onChiudi: () => void
   onAlterna: () => void
   onSalta: (secondi: number) => void
@@ -26,11 +27,12 @@ export function SchermataPlayer({
   totaleTappe,
   inRiproduzione,
   posizione,
+  durata,
   onChiudi,
   onAlterna,
   onSalta,
 }: Proprieta) {
-  const durataAudio = tappa.durataAudio ?? 0
+  const durataAudio = durata
   const percentuale = durataAudio > 0 ? Math.min((posizione / durataAudio) * 100, 100) : 0
 
   return (

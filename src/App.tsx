@@ -6,7 +6,9 @@ import { useRete } from './hooks/useRete'
 import { useWakeLock } from './hooks/useWakeLock'
 import { useTour } from './stato/useTour'
 import { distanzaMetri } from './utilita/formato'
+import { BarraTermina } from './components/base/BarraTermina'
 import { Benvenuto } from './components/schermate/Benvenuto'
+import { ConfermaFine } from './components/schermate/ConfermaFine'
 import { Conto } from './components/schermate/Conto'
 import { DettaglioTappa } from './components/schermate/DettaglioTappa'
 import { Download } from './components/schermate/Download'
@@ -29,6 +31,7 @@ export default function App() {
   const online = useRete()
   const wakeLock = useWakeLock(tour.audioSbloccato)
   const [centratura, setCentratura] = useState(0)
+  const [confermaFine, setConfermaFine] = useState(false)
 
   useEffect(() => {
     if (new URLSearchParams(window.location.search).has('demo')) tour.setDemo(true)
@@ -59,7 +62,13 @@ export default function App() {
       case 'download':
         return <Download onAvanti={() => tour.vai('inizia')} />
       case 'inizia':
-        return <IniziaTour onInizia={tour.sbloccaAudio} />
+        return (
+          <IniziaTour
+            onInizia={tour.sbloccaAudio}
+            ripresa={tour.ripresa}
+            tappaRipresa={tour.tappaAttiva}
+          />
+        )
       case 'dettaglio':
         return (
           <DettaglioTappa
@@ -69,6 +78,7 @@ export default function App() {
             prossima={TAPPE[tour.indiceAttiva + 1]}
             inRiproduzione={tour.inRiproduzione}
             posizione={tour.posizioneAudio}
+            durata={tour.durataAudio}
             onIndietro={tour.concludiTappa}
             onAlterna={tour.alterna}
             onSalta={tour.salta}
@@ -84,6 +94,7 @@ export default function App() {
             totaleTappe={TAPPE.length}
             inRiproduzione={tour.inRiproduzione}
             posizione={tour.posizioneAudio}
+            durata={tour.durataAudio}
             onChiudi={() => tour.vai('dettaglio')}
             onAlterna={tour.alterna}
             onSalta={tour.salta}
@@ -133,6 +144,7 @@ export default function App() {
             accuratezza={posizione.accuratezza}
             inRiproduzione={tour.inRiproduzione}
             posizioneAudio={tour.posizioneAudio}
+            durataAudio={tour.durataAudio}
             arrivo={tour.arrivo}
             demo={tour.demo}
             online={online}
@@ -155,5 +167,22 @@ export default function App() {
     }
   }
 
-  return <div className="app">{schermata()}</div>
+  return (
+    <div className={tour.tourInCorso ? 'app app--termina' : 'app'}>
+      {schermata()}
+      {tour.tourInCorso && <BarraTermina onTermina={() => setConfermaFine(true)} />}
+      {confermaFine && (
+        <ConfermaFine
+          ombre={tour.ombre.length}
+          tappeFatte={tour.completate.length}
+          totaleTappe={TAPPE.length}
+          onConferma={() => {
+            setConfermaFine(false)
+            tour.terminaTour()
+          }}
+          onAnnulla={() => setConfermaFine(false)}
+        />
+      )}
+    </div>
+  )
 }

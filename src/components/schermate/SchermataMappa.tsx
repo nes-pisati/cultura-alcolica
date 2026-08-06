@@ -20,6 +20,7 @@ type Proprieta = {
   accuratezza: number | null
   inRiproduzione: boolean
   posizioneAudio: number
+  durataAudio: number
   arrivo: boolean
   demo: boolean
   online: boolean
@@ -57,6 +58,7 @@ export function SchermataMappa({
   accuratezza,
   inRiproduzione,
   posizioneAudio,
+  durataAudio,
   arrivo,
   demo,
   online,
@@ -80,7 +82,6 @@ export function SchermataMappa({
   const negata = statoPosizione === 'negata'
   const avvisoPosizione = imprecisa || scartata
   const bacaro = tappaAttiva.tipo === 'bacaro'
-  const durataAudio = tappaAttiva.durataAudio ?? 0
   const haAudio = durataAudio > 0
 
   return (
