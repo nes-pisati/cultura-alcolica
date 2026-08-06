@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { TAPPE } from './dati/tappe'
+import { useGeofence } from './hooks/useGeofence'
 import { usePosizione } from './hooks/usePosizione'
 import { useRete } from './hooks/useRete'
 import { useWakeLock } from './hooks/useWakeLock'
@@ -36,6 +37,13 @@ export default function App() {
   const distanza = posizione.coordinate
     ? distanzaMetri(posizione.coordinate, tour.tappaAttiva.coordinate)
     : null
+
+  const geofenceAttivo =
+    tour.schermata === 'mappa' &&
+    !tour.arrivo &&
+    !tour.attivate.includes(tour.tappaAttiva.id)
+
+  useGeofence(tour.tappaAttiva, posizione, geofenceAttivo, tour.segnalaArrivo)
 
   const schermata = () => {
     switch (tour.schermata) {

@@ -26,6 +26,7 @@ export function useTour() {
   const [audioSbloccato, setAudioSbloccato] = useState(false)
   const [indiceAttiva, setIndiceAttiva] = useState(0)
   const [completate, setCompletate] = useState<number[]>([])
+  const [attivate, setAttivate] = useState<number[]>([])
   const [ombre, setOmbre] = useState<Ombra[]>([])
   const [inRiproduzione, setInRiproduzione] = useState(false)
   const [posizioneAudio, setPosizioneAudio] = useState(0)
@@ -83,7 +84,10 @@ export function useTour() {
     setArrivo(true)
     setPosizioneAudio(0)
     setInRiproduzione((tappaAttiva.durataAudio ?? 0) > 0)
-  }, [tappaAttiva.durataAudio])
+    setAttivate((elenco) =>
+      elenco.includes(tappaAttiva.id) ? elenco : [...elenco, tappaAttiva.id],
+    )
+  }, [tappaAttiva.durataAudio, tappaAttiva.id])
 
   const entraNellaTappa = useCallback(() => {
     setArrivo(false)
@@ -120,6 +124,7 @@ export function useTour() {
   const azzera = useCallback(() => {
     setIndiceAttiva(0)
     setCompletate([])
+    setAttivate([])
     setOmbre([])
     setInRiproduzione(false)
     setPosizioneAudio(0)
@@ -148,6 +153,7 @@ export function useTour() {
     tappaAttiva,
     indiceAttiva,
     completate,
+    attivate,
     ombre,
     inRiproduzione,
     posizioneAudio,
