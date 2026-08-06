@@ -80,6 +80,8 @@ export function SchermataMappa({
   const negata = statoPosizione === 'negata'
   const avvisoPosizione = imprecisa || scartata
   const bacaro = tappaAttiva.tipo === 'bacaro'
+  const durataAudio = tappaAttiva.durataAudio ?? 0
+  const haAudio = durataAudio > 0
 
   return (
     <div className="schermata-mappa">
@@ -185,13 +187,19 @@ export function SchermataMappa({
               <div className="arrivo__titolo">{tappaAttiva.titolo}</div>
             </div>
           </div>
-          <p className="arrivo__testo">L’audioguida parte da sola. Se preferisci, fermala e leggi.</p>
-          <PlayerCompatto
-            inRiproduzione={inRiproduzione}
-            posizione={posizioneAudio}
-            durata={tappaAttiva.durataAudio}
-            onAlterna={onAlterna}
-          />
+          <p className="arrivo__testo">
+            {haAudio
+              ? 'L’audioguida parte da sola. Se preferisci, fermala e leggi.'
+              : 'Nessuna audioguida qui: si beve e basta.'}
+          </p>
+          {haAudio && (
+            <PlayerCompatto
+              inRiproduzione={inRiproduzione}
+              posizione={posizioneAudio}
+              durata={durataAudio}
+              onAlterna={onAlterna}
+            />
+          )}
           <div className="sheet__azioni sheet__azioni--colonna">
             <PulsanteGrande onClick={onEntra}>Apri la tappa</PulsanteGrande>
             <PulsantePillola neutro largo onClick={onAnnullaArrivo}>
@@ -213,12 +221,14 @@ export function SchermataMappa({
           <PlayerCompatto
             inRiproduzione={inRiproduzione}
             posizione={posizioneAudio}
-            durata={tappaAttiva.durataAudio}
+            durata={durataAudio}
             onAlterna={onAlterna}
             onSalta={onSalta}
             onTesto={onEntra}
           />
-          <p className="sheet__anteprima">{tappaAttiva.paragrafi[0]}</p>
+          {tappaAttiva.paragrafi && (
+            <p className="sheet__anteprima">{tappaAttiva.paragrafi[0]}</p>
+          )}
           <div className="sheet__azioni">
             {bacaro ? (
               <>
@@ -262,7 +272,7 @@ export function SchermataMappa({
               <div className="sheet__azioni">
                 <PulsanteGrande onClick={onEntra}>
                   <IconaPlay dimensione={20} colore="#f5efe6" />
-                  {`Ascolta · ${formattaTempo(tappaAttiva.durataAudio)}`}
+                  {`Ascolta · ${formattaTempo(durataAudio)}`}
                 </PulsanteGrande>
                 <PulsantePillola onClick={onSonoQui}>Sono qui</PulsantePillola>
               </div>

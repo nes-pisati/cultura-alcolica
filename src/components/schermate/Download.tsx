@@ -17,7 +17,7 @@ const TOTALE = PESI_DOWNLOAD.mappa + PESI_DOWNLOAD.audio + PESI_DOWNLOAD.testi
 const voci = [
   { nome: 'Mappa di Venezia', peso: PESI_DOWNLOAD.mappa, icona: <IconaMappa colore="#23201d" /> },
   {
-    nome: `Audio delle ${NUMERI_TOUR.tappe} tappe`,
+    nome: `Audio di ${NUMERI_TOUR.conAudio} tappe`,
     peso: PESI_DOWNLOAD.audio,
     icona: <IconaOnde colore="#23201d" />,
   },
@@ -145,7 +145,7 @@ export function Download({ onAvanti }: { onAvanti: () => void }) {
             stato={mappaPronta ? 'salvata' : 'corso'}
           />
           <BarraProgressoDownload
-            nome={`Audio delle ${NUMERI_TOUR.tappe} tappe`}
+            nome={`Audio di ${NUMERI_TOUR.conAudio} tappe`}
             scaricati={audioScaricati}
             totale={PESI_DOWNLOAD.audio}
             stato={statoAudio}
@@ -153,8 +153,8 @@ export function Download({ onAvanti }: { onAvanti: () => void }) {
               statoAudio === 'corso'
                 ? `Tappa ${Math.max(
                     1,
-                    Math.ceil((audioScaricati / PESI_DOWNLOAD.audio) * NUMERI_TOUR.tappe),
-                  )} di ${NUMERI_TOUR.tappe}`
+                    Math.ceil((audioScaricati / PESI_DOWNLOAD.audio) * NUMERI_TOUR.conAudio),
+                  )} di ${NUMERI_TOUR.conAudio}`
                 : undefined
             }
           />

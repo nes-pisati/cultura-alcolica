@@ -31,7 +31,9 @@ export function DettaglioTappa({
   onOmbra,
   onApriPlayer,
 }: Proprieta) {
-  const percentuale = Math.min((posizione / tappa.durataAudio) * 100, 100)
+  const durataAudio = tappa.durataAudio ?? 0
+  const haAudio = durataAudio > 0
+  const percentuale = haAudio ? Math.min((posizione / durataAudio) * 100, 100) : 0
   const bacaro = tappa.tipo === 'bacaro'
 
   return (
@@ -52,7 +54,7 @@ export function DettaglioTappa({
         <h1 className="dettaglio__titolo">{tappa.titolo}</h1>
         {!bacaro && (
           <div className="dettaglio__sommario">
-            {`Ascolto ${formattaTempo(tappa.durataAudio)} · ${formattaDistanza(
+            {`Ascolto ${formattaTempo(durataAudio)} · ${formattaDistanza(
               tappa.distanzaDallaPrecedente,
             )} dalla tappa precedente`}
           </div>
@@ -62,7 +64,7 @@ export function DettaglioTappa({
             <span className="dettaglio__segnaposto">foto del bancone · 4:3</span>
           </div>
         )}
-        {tappa.paragrafi.map((paragrafo, indice) => (
+        {tappa.paragrafi?.map((paragrafo, indice) => (
           <p
             key={indice}
             className={
@@ -92,7 +94,13 @@ export function DettaglioTappa({
         )}
       </div>
 
-      {bacaro ? (
+      {bacaro && !haAudio ? (
+        <div className="ancora-player">
+          <PulsanteGrande onClick={onOmbra}>
+            <IconaBicchiere colore="#f5efe6" />+ un’ombra
+          </PulsanteGrande>
+        </div>
+      ) : bacaro ? (
         <div className="ancora-player">
           <div className="ancora-player__riga">
             <button
@@ -117,7 +125,7 @@ export function DettaglioTappa({
               </span>
               <span className="ancora-player__tempi">
                 <span>{formattaTempo(posizione)}</span>
-                <span>{formattaResiduo(tappa.durataAudio - posizione)}</span>
+                <span>{formattaResiduo(durataAudio - posizione)}</span>
               </span>
             </button>
             <button
@@ -163,7 +171,7 @@ export function DettaglioTappa({
               />
             </span>
           </button>
-          <span className="ancora-player__durata">{formattaTempo(tappa.durataAudio)}</span>
+          <span className="ancora-player__durata">{formattaTempo(durataAudio)}</span>
         </div>
       )}
     </div>

@@ -43,9 +43,10 @@ export function useTour() {
   }, [inRiproduzione])
 
   useEffect(() => {
-    if (posizioneAudio < tappaAttiva.durataAudio) return
+    const durata = tappaAttiva.durataAudio ?? 0
+    if (posizioneAudio < durata) return
     setInRiproduzione(false)
-    setPosizioneAudio(tappaAttiva.durataAudio)
+    setPosizioneAudio(durata)
   }, [posizioneAudio, tappaAttiva.durataAudio])
 
   const vai = useCallback((prossima: Schermata) => setSchermata(prossima), [])
@@ -65,7 +66,7 @@ export function useTour() {
   const salta = useCallback(
     (secondi: number) =>
       setPosizioneAudio((valore) =>
-        Math.min(Math.max(valore + secondi, 0), tappaAttiva.durataAudio),
+        Math.min(Math.max(valore + secondi, 0), tappaAttiva.durataAudio ?? 0),
       ),
     [tappaAttiva.durataAudio],
   )
@@ -81,8 +82,8 @@ export function useTour() {
   const segnalaArrivo = useCallback(() => {
     setArrivo(true)
     setPosizioneAudio(0)
-    setInRiproduzione(true)
-  }, [])
+    setInRiproduzione((tappaAttiva.durataAudio ?? 0) > 0)
+  }, [tappaAttiva.durataAudio])
 
   const entraNellaTappa = useCallback(() => {
     setArrivo(false)

@@ -30,7 +30,8 @@ export function SchermataPlayer({
   onAlterna,
   onSalta,
 }: Proprieta) {
-  const percentuale = Math.min((posizione / tappa.durataAudio) * 100, 100)
+  const durataAudio = tappa.durataAudio ?? 0
+  const percentuale = durataAudio > 0 ? Math.min((posizione / durataAudio) * 100, 100) : 0
 
   return (
     <div className="schermata">
@@ -62,7 +63,7 @@ export function SchermataPlayer({
         <div className="player-esteso__tempi">
           <span>{formattaTempo(posizione)}</span>
           <span className="player-esteso__tempo-residuo">
-            {formattaResiduo(tappa.durataAudio - posizione)}
+            {formattaResiduo(durataAudio - posizione)}
           </span>
         </div>
         <div className="player-esteso__tasti">
