@@ -10,7 +10,7 @@ import {
 } from 'maplibre-gl'
 import { Protocol } from 'pmtiles'
 import 'maplibre-gl/dist/maplibre-gl.css'
-import urlWorkerMappa from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
+import urlWorkerMappa from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 import { creaStile, VENEZIA } from '../mappa/stile'
 import { PERCORSO, TAPPE } from '../dati/tappe'
 import { MarkerTappa } from './base/MarkerTappa'
