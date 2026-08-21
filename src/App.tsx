@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TAPPE } from './dati/tappe'
 import { useGeofence } from './hooks/useGeofence'
 import { usePosizione } from './hooks/usePosizione'
@@ -27,15 +27,11 @@ const durataTrascorsa = (istante: number | null) => {
 
 export default function App() {
   const tour = useTour()
-  const posizione = usePosizione(tour.demo, tour.audioSbloccato)
+  const posizione = usePosizione(tour.audioSbloccato)
   const online = useRete()
   const wakeLock = useWakeLock(tour.audioSbloccato)
   const [centratura, setCentratura] = useState(0)
   const [confermaFine, setConfermaFine] = useState(false)
-
-  useEffect(() => {
-    if (new URLSearchParams(window.location.search).has('demo')) tour.setDemo(true)
-  }, [tour.setDemo])
 
   const distanza = posizione.coordinate
     ? distanzaMetri(posizione.coordinate, tour.tappaAttiva.coordinate)
@@ -146,13 +142,10 @@ export default function App() {
             posizioneAudio={tour.posizioneAudio}
             durataAudio={tour.durataAudio}
             arrivo={tour.arrivo}
-            demo={tour.demo}
             online={online}
             wakeLock={wakeLock}
             richiestaCentratura={centratura}
             onRicentra={() => setCentratura((valore) => valore + 1)}
-            onEsciDemo={() => tour.setDemo(false)}
-            onAttivaDemo={() => tour.setDemo(true)}
             onSonoQui={tour.segnalaArrivo}
             onApriTappa={tour.apriTappa}
             onApriConto={() => tour.vai('conto')}

@@ -230,31 +230,6 @@
   color: var(--carta-fioca);
 }
 
-.banda-demo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spazio-3);
-  padding: 8px 14px;
-  border-bottom: 1px solid var(--inchiostro);
-  background: var(--avviso);
-}
-
-.banda-demo__etichetta {
-  font: 600 10px/1 var(--font-mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--inchiostro);
-}
-
-.banda-demo__uscita {
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: var(--inchiostro);
-  font: 600 12px/1 var(--font-testo);
-  text-decoration: underline;
-}
 
 .player-compatto {
   display: flex;

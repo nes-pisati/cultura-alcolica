@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
-import { PERCORSO } from '../dati/tappe'
+import { useEffect, useState } from 'react'
 
 export type StatoPosizione = 'attesa' | 'buona' | 'imprecisa' | 'scartata' | 'negata' | 'assente'
 
@@ -18,29 +17,15 @@ const statoDaAccuratezza = (accuratezza: number): StatoPosizione => {
   return 'buona'
 }
 
-export function usePosizione(demo: boolean, attivo: boolean): Posizione {
+export function usePosizione(attivo: boolean): Posizione {
   const [posizione, setPosizione] = useState<Posizione>({
     coordinate: null,
     accuratezza: null,
     stato: 'attesa',
   })
-  const passoDemo = useRef(0)
 
   useEffect(() => {
-    if (!demo || !attivo) return
-    passoDemo.current = 0
-    const avanza = () => {
-      const punto = PERCORSO[passoDemo.current % PERCORSO.length]
-      passoDemo.current += 1
-      setPosizione({ coordinate: punto, accuratezza: 12, stato: 'buona' })
-    }
-    avanza()
-    const timer = window.setInterval(avanza, 4000)
-    return () => window.clearInterval(timer)
-  }, [demo, attivo])
-
-  useEffect(() => {
-    if (demo || !attivo) return
+    if (!attivo) return
     if (!('geolocation' in navigator)) {
       setPosizione({ coordinate: null, accuratezza: null, stato: 'assente' })
       return
@@ -66,7 +51,7 @@ export function usePosizione(demo: boolean, attivo: boolean): Posizione {
     )
 
     return () => navigator.geolocation.clearWatch(osservatore)
-  }, [demo, attivo])
+  }, [attivo])
 
   return posizione
 }

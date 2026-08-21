@@ -4,7 +4,6 @@ import { formattaDistanza, formattaTempo } from '../../utilita/formato'
 import { Mappa } from '../Mappa'
 import { AvvisoDiSistema } from '../base/AvvisoDiSistema'
 import { BadgeInAscolto, BadgeTipo } from '../base/Badge'
-import { BandaDemo } from '../base/BandaDemo'
 import { IconaBicchiere, IconaMirino, IconaPlay } from '../base/Icone'
 import { PlayerCompatto } from '../base/PlayerCompatto'
 import { PulsanteFlottante, PulsanteGrande, PulsantePillola } from '../base/Pulsanti'
@@ -22,13 +21,10 @@ type Proprieta = {
   posizioneAudio: number
   durataAudio: number
   arrivo: boolean
-  demo: boolean
   online: boolean
   wakeLock: { attivo: boolean; disponibile: boolean }
   richiestaCentratura: number
   onRicentra: () => void
-  onEsciDemo: () => void
-  onAttivaDemo: () => void
   onSonoQui: () => void
   onApriTappa: (id: number) => void
   onApriConto: () => void
@@ -60,13 +56,10 @@ export function SchermataMappa({
   posizioneAudio,
   durataAudio,
   arrivo,
-  demo,
   online,
   wakeLock,
   richiestaCentratura,
   onRicentra,
-  onEsciDemo,
-  onAttivaDemo,
   onSonoQui,
   onApriTappa,
   onApriConto,
@@ -99,7 +92,6 @@ export function SchermataMappa({
       </div>
 
       <div className="schermata-mappa__alto">
-        {demo && <BandaDemo onEsci={onEsciDemo} />}
         <button type="button" className="barra-tappa" onClick={onApriElenco}>
           <span className="barra-tappa__numero">{tappaAttiva.id}</span>
           <span className="barra-tappa__corpo">
@@ -131,15 +123,8 @@ export function SchermataMappa({
               peso="bloccante"
               titolo="Non sappiamo dove sei"
               titoloSerif
-              dettaglio="La posizione è disattivata per questa app. Puoi riattivarla nelle impostazioni del telefono, oppure seguire il percorso a occhio e avviare le tappe a mano."
+              dettaglio="La posizione è disattivata per questa app. Puoi riattivarla nelle impostazioni del telefono, oppure seguire il percorso a occhio e avviare ogni tappa con «Sono qui»."
               istruzione="Impostazioni › Safari › Posizione › Chiedi"
-              azioni={
-                <>
-                  <PulsanteGrande chiaro onClick={onAttivaDemo}>
-                    Avanza a mano
-                  </PulsanteGrande>
-                </>
-              }
             />
           ) : imprecisa ? (
             <AvvisoDiSistema

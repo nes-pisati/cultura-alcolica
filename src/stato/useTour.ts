@@ -47,7 +47,6 @@ export function useTour() {
   const [attivate, setAttivate] = useState<number[]>(salvato?.attivate ?? [])
   const [ombre, setOmbre] = useState<Ombra[]>(salvato?.ombre ?? [])
   const [arrivo, setArrivo] = useState(false)
-  const [demo, setDemo] = useState(false)
   const [inizio, setInizio] = useState<string | null>(salvato?.inizio ?? null)
   const [inizioIstante, setInizioIstante] = useState<number | null>(salvato?.inizioIstante ?? null)
 
@@ -185,7 +184,6 @@ export function useTour() {
     posizioneAudio,
     durataAudio,
     arrivo,
-    demo,
     inizio,
     inizioIstante,
     avanzamento,
@@ -204,7 +202,6 @@ export function useTour() {
     aggiungiOmbra,
     togliOmbra,
     azzera,
-    setDemo,
   }
 }
 
